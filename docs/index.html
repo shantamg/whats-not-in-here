@@ -20,6 +20,8 @@ h3{font-size:1.1rem;margin:1.2rem 0 0.5rem;color:#5a4a3f}
 .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:1.5rem}
 .page-card{background:#fff;border:1px solid #e8e4df;border-radius:10px;overflow:hidden;
   box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.page-image-container{position:relative;width:100%;overflow:hidden}
+.page-card .page-image-container img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
 .page-card img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
 .page-card .card-body{padding:1rem 1.2rem}
 .page-card .page-num{font-size:0.8rem;color:#9a8a7f;text-transform:uppercase;letter-spacing:0.04em}
@@ -71,7 +73,14 @@ table.data-table td{background:#fff}
   .meta-grid{grid-template-columns:1fr 1fr}
   .container{padding:1rem}
 }
-</style></head><body>
+</style>
+<link rel='stylesheet' href='css/text-overlay.css'>
+<link rel='stylesheet' href='css/editor-ui.css'>
+<link rel='stylesheet' href='css/spread-cards.css'>
+<link rel='stylesheet' href='css/version-viewer.css'>
+<link rel='stylesheet' href='css/live-changes.css'>
+</head>
+<body data-available-fonts='[{&quot;file&quot;: &quot;Nunito-Regular.ttf&quot;, &quot;name&quot;: &quot;Nunito Regular&quot;}, {&quot;file&quot;: &quot;Quicksand-Medium.ttf&quot;, &quot;name&quot;: &quot;Quicksand Medium&quot;}, {&quot;file&quot;: &quot;Quicksand.ttf&quot;, &quot;name&quot;: &quot;Quicksand&quot;}, {&quot;file&quot;: &quot;Comfortaa-Regular.ttf&quot;, &quot;name&quot;: &quot;Comfortaa Regular&quot;}, {&quot;file&quot;: &quot;OpenSans-Regular.ttf&quot;, &quot;name&quot;: &quot;OpenSans Regular&quot;}]'>
 <nav class="sticky-nav">
   <a href="index.html">Book Preview</a>
   <a href="data.html">Project Data</a>
@@ -88,25 +97,18 @@ table.data-table td{background:#fff}
 <div class='meta-item'><div class='meta-label'>Phase</div><div class='meta-value'>cover-generation</div></div>
 <div class='meta-item'><div class='meta-label'>Model</div><div class='meta-value'>nano-banana-pro</div></div>
 </div>
-<h2 id='characters'>Characters</h2>
-<div class='char-grid'>
-<div class='char-card'>
-<img src='images/characters/eloy-primary.jpg' alt='Eloy' loading='lazy'>
-<div class='card-body'>
-<div class='char-name'>Eloy</div>
-<div class='char-role'>protagonist</div>
-<p class='scene-desc'>A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants</p>
-<p class='scene-desc'>age: 4, hairColor: dark brown, hairStyle: wavy, slightly tousled, eyeColor: green, skinTone: light tan, signature: pink t-shirt and colorful patterned pants</p>
-<details><summary>Prompt snippet</summary><pre>4-year-old boy Eloy with dark wavy hair, green eyes, pink t-shirt, and patterned pants</pre></details>
-<details><summary>Other views</summary>
-<img src='images/characters/eloy-front.jpg' alt='characters/eloy-front' loading='lazy' style='max-width:300px;margin:0.5rem 0.5rem 0 0'>
-</details>
-</div></div>
-</div>
 <h2 id='pages'>Pages</h2>
+<div class='preview-disclaimer'>
+<strong>✨ Interactive Text Preview:</strong> 
+Click 'Edit Text' below to adjust text overlays in real-time! 
+This preview approximates the final Pillow rendering (~95% accuracy). 
+Export your settings when done, then run <code>book add-text</code> to generate final images.
+</div>
 <div class='page-grid'>
-<div class='page-card'>
-<img src='images/pages/page-01.jpg' alt='Page 1' loading='lazy'>
+<div class='page-card' data-page-number='1' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;Eloy, clean up in here and then you&#x27;ll be free,\&quot; said Mama.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-01.jpg' alt='Page 1' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 1</div>
 <p class='page-text'>"&quot;Eloy, clean up in here and then you&#x27;ll be free,&quot; said Mama."</p>
@@ -142,8 +144,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-02.jpg' alt='Page 2' loading='lazy'>
+<div class='page-card' data-page-number='2' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;That&#x27;s boring,\&quot; he said. Maybe he didn&#x27;t want to be free.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-02.jpg' alt='Page 2' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 2</div>
 <p class='page-text'>"&quot;That&#x27;s boring,&quot; he said. Maybe he didn&#x27;t want to be free."</p>
@@ -179,8 +183,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-03.jpg' alt='Page 3' loading='lazy'>
+<div class='page-card' data-page-number='3' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He found a screwdriver and started taking things apart. \&quot;I just want to see what kind of batteries my garbage truck has\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-03.jpg' alt='Page 3' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 3</div>
 <p class='page-text'>"He found a screwdriver and started taking things apart. &quot;I just want to see what kind of batteries my garbage truck has&quot;"</p>
@@ -216,8 +222,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-04.jpg' alt='Page 4' loading='lazy'>
+<div class='page-card' data-page-number='4' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;To make a rainbow, you just have to face your shadow. Eloy&#x27;s dad had taught him that. He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-04.jpg' alt='Page 4' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 4</div>
 <p class='page-text'>"To make a rainbow, you just have to face your shadow. Eloy&#x27;s dad had taught him that. He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared."</p>
@@ -253,8 +261,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-05.jpg' alt='Page 5' loading='lazy'>
+<div class='page-card' data-page-number='5' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He jumped into his favorite big machine and started tearing up the earth. Words melted into rumbling sounds and he sang repetitive songs of screeches and beeps.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-05.jpg' alt='Page 5' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 5</div>
 <p class='page-text'>"He jumped into his favorite big machine and started tearing up the earth. Words melted into rumbling sounds and he sang repetitive songs of screeches and beeps."</p>
@@ -290,8 +300,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-06.jpg' alt='Page 6' loading='lazy'>
+<div class='page-card' data-page-number='6' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;In a rocket ship he built all by himself, which was just the right size and just the right shape, he blasted up and away to see how far he could get.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-06.jpg' alt='Page 6' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 6</div>
 <p class='page-text'>"In a rocket ship he built all by himself, which was just the right size and just the right shape, he blasted up and away to see how far he could get."</p>
@@ -327,8 +339,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-07.jpg' alt='Page 7' loading='lazy'>
+<div class='page-card' data-page-number='7' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;But space was so empty and quiet. Nobody was there.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-07.jpg' alt='Page 7' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 7</div>
 <p class='page-text'>"But space was so empty and quiet. Nobody was there."</p>
@@ -364,8 +378,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-08.jpg' alt='Page 8' loading='lazy'>
+<div class='page-card' data-page-number='8' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;The spaceship dove down, down, down into the ocean and became a submarine!&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-08.jpg' alt='Page 8' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 8</div>
 <p class='page-text'>"The spaceship dove down, down, down into the ocean and became a submarine!"</p>
@@ -401,8 +417,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-09.jpg' alt='Page 9' loading='lazy'>
+<div class='page-card' data-page-number='9' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Deep underwater, he found very strange creatures with very strange secrets that only he could understand.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-09.jpg' alt='Page 9' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 9</div>
 <p class='page-text'>"Deep underwater, he found very strange creatures with very strange secrets that only he could understand."</p>
@@ -438,8 +456,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-10.jpg' alt='Page 10' loading='lazy'>
+<div class='page-card' data-page-number='10' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;When he emerged from the deep, his vehicle grew wheels, and the very strange creatures seemed to say goodbye in their very strange way.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-10.jpg' alt='Page 10' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 10</div>
 <p class='page-text'>"When he emerged from the deep, his vehicle grew wheels, and the very strange creatures seemed to say goodbye in their very strange way."</p>
@@ -475,8 +495,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-11.jpg' alt='Page 11' loading='lazy'>
+<div class='page-card' data-page-number='11' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;The more he drove, the bigger it grew. Soon he could barely hold the wheel. He remembered something his grandmother had said: \&quot;When you find yourself becoming too strong, that&#x27;s when you must be most gentle.\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-11.jpg' alt='Page 11' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 11</div>
 <p class='page-text'>"The more he drove, the bigger it grew. Soon he could barely hold the wheel. He remembered something his grandmother had said: &quot;When you find yourself becoming too strong, that&#x27;s when you must be most gentle.&quot;"</p>
@@ -512,8 +534,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-12.jpg' alt='Page 12' loading='lazy'>
+<div class='page-card' data-page-number='12' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Then Eloy saw something that took his breath away\u2014the glowing moon, bright and beautiful.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-12.jpg' alt='Page 12' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 12</div>
 <p class='page-text'>"Then Eloy saw something that took his breath away—the glowing moon, bright and beautiful."</p>
@@ -549,8 +573,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-13.jpg' alt='Page 13' loading='lazy'>
+<div class='page-card' data-page-number='13' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-13.jpg' alt='Page 13' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 13</div>
 <p class='page-text'>"He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl."</p>
@@ -586,8 +612,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-14.jpg' alt='Page 14' loading='lazy'>
+<div class='page-card' data-page-number='14' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;What&#x27;s out there\u2026\&quot; the owl said slowly&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-14.jpg' alt='Page 14' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 14</div>
 <p class='page-text'>"&quot;What&#x27;s out there…&quot; the owl said slowly"</p>
@@ -623,8 +651,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-15.jpg' alt='Page 15' loading='lazy'>
+<div class='page-card' data-page-number='15' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;\u2026is also in here.\&quot; The owl gently touched the center of Eloy&#x27;s chest. \&quot;What&#x27;s not in here, doesn&#x27;t exist.\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-15.jpg' alt='Page 15' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 15</div>
 <p class='page-text'>"&quot;…is also in here.&quot; The owl gently touched the center of Eloy&#x27;s chest. &quot;What&#x27;s not in here, doesn&#x27;t exist.&quot;"</p>
@@ -660,8 +690,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-16.jpg' alt='Page 16' loading='lazy'>
+<div class='page-card' data-page-number='16' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Eloy closed his eyes. And suddenly, he discovered a whole world inside himself.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-16.jpg' alt='Page 16' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 16</div>
 <p class='page-text'>"Eloy closed his eyes. And suddenly, he discovered a whole world inside himself."</p>
@@ -697,53 +729,49 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-17.jpg' alt='Page 17' loading='lazy'>
+<div class='spread-card' data-pages='17-18' data-page-type='spread'>
+<div class='spread-images'>
+<img src='images/pages/page-17.jpg' alt='Pages 17-18 (Left)' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-18.jpg' alt='Pages 17-18 (Right)' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
-<div class='page-num'>Page 17</div>
+<div class='page-num'>Pages 17-18</div>
 <p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).</p>
 <span class='mood-badge'>Present, harmonious</span>
-<span class='mood-badge'>eloy</span>
+ <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
+
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-18.jpg' alt='Page 18' loading='lazy'>
+<div class='spread-card' data-pages='19-20' data-page-type='spread'>
+<div class='spread-images'>
+<img src='images/pages/page-19.jpg' alt='Pages 19-20 (Left)' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-20.jpg' alt='Pages 19-20 (Right)' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
-<div class='page-num'>Page 18</div>
- <span class='badge badge-pending'>Pending review</span>
-</div></div>
-<div class='page-card'>
-<img src='images/pages/page-19.jpg' alt='Page 19' loading='lazy'>
-<div class='card-body'>
-<div class='page-num'>Page 19</div>
+<div class='page-num'>Pages 19-20</div>
 <p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</p>
 <span class='mood-badge'>Transcendent, beautiful</span>
-<span class='mood-badge'>eloy</span>
+ <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
+
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-20.jpg' alt='Page 20' loading='lazy'>
+<div class='spread-card' data-pages='21-22' data-page-type='spread'>
+<div class='spread-images'>
+<img src='images/pages/page-21.jpg' alt='Pages 21-22 (Left)' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-22.jpg' alt='Pages 21-22 (Right)' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
-<div class='page-num'>Page 20</div>
- <span class='badge badge-pending'>Pending review</span>
-</div></div>
-<div class='page-card'>
-<img src='images/pages/page-21.jpg' alt='Page 21' loading='lazy'>
-<div class='card-body'>
-<div class='page-num'>Page 21</div>
+<div class='page-num'>Pages 21-22</div>
 <p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.</p>
 <span class='mood-badge'>Universal, infinite</span>
-<span class='mood-badge'>eloy</span>
+ <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
+
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-22.jpg' alt='Page 22' loading='lazy'>
-<div class='card-body'>
-<div class='page-num'>Page 22</div>
- <span class='badge badge-pending'>Pending review</span>
-</div></div>
-<div class='page-card'>
-<img src='images/pages/page-23.jpg' alt='Page 23' loading='lazy'>
+<div class='page-card' data-page-number='23' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;Eloy? Eloy, where are you?\&quot; Eloy heard the sweet sound of his mama calling from far far away.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-23.jpg' alt='Page 23' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 23</div>
 <p class='page-text'>"&quot;Eloy? Eloy, where are you?&quot; Eloy heard the sweet sound of his mama calling from far far away."</p>
@@ -779,8 +807,10 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
-<img src='images/pages/page-24.jpg' alt='Page 24' loading='lazy'>
+<div class='page-card' data-page-number='24' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;I&#x27;m right here, mama\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-image-container'>
+<img src='images/pages/page-24.jpg' alt='Page 24' loading='lazy' data-original-width='4096'>
+</div>
 <div class='card-body'>
 <div class='page-num'>Page 24</div>
 <p class='page-text'>"&quot;I&#x27;m right here, mama&quot;"</p>
@@ -816,7 +846,7 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card'>
+<div class='page-card' data-page-number='25' data-page-type='blank'>
 <div class='placeholder'>Not Generated</div>
 <div class='card-body'>
 <div class='page-num'>Page 25</div>
@@ -831,5 +861,8 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <div class='progress-item'><div class='progress-check' style='color:#bbb'>&#8226;</div><div>Cover</div></div>
 </div>
 <p style='margin-top:1rem;color:#6b5b4f'>24/25 pages generated</p>
-<footer>Generated 2026-02-11 06:40 UTC &middot; whats-not-in-here</footer>
-</div></body></html>
+<footer>Generated 2026-02-11 16:35 UTC &middot; whats-not-in-here</footer>
+</div>
+<script src='js/version-metadata.js'></script>
+<script type='module' src='js/main.js'></script>
+</body></html>
