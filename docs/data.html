@@ -1,0 +1,823 @@
+<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>What&#x27;s Not In Here - Project Data</title>
+<style>*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:#faf8f5;color:#2c2c2c;line-height:1.6}
+.sticky-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e0dcd7;
+  padding:0.6rem 2rem;display:flex;gap:1.5rem;font-size:0.9rem}
+.sticky-nav a{color:#6b5b4f;text-decoration:none;font-weight:600}
+.sticky-nav a:hover{color:#3a2f27}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem}
+h1{font-size:2rem;margin:1.5rem 0 0.3rem;color:#3a2f27}
+h2{font-size:1.4rem;margin:2rem 0 1rem;color:#3a2f27;border-bottom:2px solid #e0dcd7;padding-bottom:0.4rem}
+h3{font-size:1.1rem;margin:1.2rem 0 0.5rem;color:#5a4a3f}
+.subtitle{color:#7a6a5f;margin-bottom:1.5rem;font-size:1rem}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;margin-bottom:1.5rem}
+.meta-item{background:#fff;border:1px solid #e8e4df;border-radius:8px;padding:0.7rem 1rem}
+.meta-label{font-size:0.75rem;text-transform:uppercase;color:#9a8a7f;letter-spacing:0.03em}
+.meta-value{font-weight:600;color:#3a2f27;margin-top:0.15rem}
+.page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:1.5rem}
+.page-card{background:#fff;border:1px solid #e8e4df;border-radius:10px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.page-card img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
+.page-card .card-body{padding:1rem 1.2rem}
+.page-card .page-num{font-size:0.8rem;color:#9a8a7f;text-transform:uppercase;letter-spacing:0.04em}
+.page-card .page-text{font-size:1.05rem;font-style:italic;margin:0.5rem 0;color:#3a2f27}
+.page-card .scene-desc{font-size:0.88rem;color:#6b5b4f;margin:0.5rem 0}
+.page-card .mood-badge{display:inline-block;background:#f0ebe5;color:#7a6a5f;padding:0.15rem 0.6rem;
+  border-radius:12px;font-size:0.78rem;margin:0.3rem 0.3rem 0 0}
+.variations-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem;
+  border-bottom:1px solid #eee;padding:0.5rem}
+.variations-grid .var-item{position:relative;cursor:pointer}
+.variations-grid .var-item img{width:100%;height:auto;border-radius:6px;border:2px solid transparent}
+.variations-grid .var-label{position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:#fff;
+  padding:0.1rem 0.5rem;border-radius:4px;font-size:0.75rem;font-weight:600}
+.badge{display:inline-block;padding:0.15rem 0.6rem;border-radius:12px;font-size:0.78rem;font-weight:600}
+.badge-approved{background:#e6f4ea;color:#1e7e34}
+.badge-pending{background:#fff3cd;color:#856404}
+.badge-missing{background:#f8d7da;color:#721c24}
+.placeholder{background:#f0ebe5;display:flex;align-items:center;justify-content:center;
+  min-height:260px;color:#9a8a7f;font-size:0.95rem;border-bottom:1px solid #eee}
+.char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.char-card{background:#fff;border:1px solid #e8e4df;border-radius:10px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.char-card img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
+.char-card .card-body{padding:1rem 1.2rem}
+.char-name{font-size:1.15rem;font-weight:700;color:#3a2f27}
+.char-role{font-size:0.82rem;color:#9a8a7f;text-transform:uppercase;letter-spacing:0.03em}
+details{margin:0.5rem 0}
+details summary{cursor:pointer;font-size:0.85rem;color:#6b5b4f;font-weight:600}
+details pre{background:#faf8f5;border:1px solid #e8e4df;padding:0.8rem;border-radius:6px;
+  font-size:0.82rem;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+.progress-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.8rem}
+.progress-item{text-align:center;padding:0.8rem;background:#fff;border:1px solid #e8e4df;border-radius:8px}
+.progress-check{font-size:1.5rem}
+footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid #e0dcd7;font-size:0.82rem;color:#9a8a7f}
+/* Data page tables */
+table.data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.88rem}
+table.data-table th,table.data-table td{border:1px solid #e0dcd7;padding:0.5rem 0.75rem;text-align:left}
+table.data-table th{background:#f5f1ec;color:#5a4a3f;font-weight:600;font-size:0.8rem;
+  text-transform:uppercase;letter-spacing:0.03em}
+table.data-table td{background:#fff}
+.swatch{display:inline-block;width:24px;height:24px;border-radius:4px;border:1px solid #ddd;
+  vertical-align:middle;margin-right:0.4rem}
+.story-text{background:#fff;border:1px solid #e8e4df;border-radius:8px;padding:1.2rem 1.5rem;
+  font-size:0.95rem;line-height:1.7;white-space:pre-wrap}
+.log-entry{background:#fff;border:1px solid #e8e4df;border-radius:6px;padding:0.6rem 0.8rem;
+  margin:0.4rem 0;font-size:0.82rem}
+@media(max-width:600px){
+  .page-grid,.char-grid{grid-template-columns:1fr}
+  .meta-grid{grid-template-columns:1fr 1fr}
+  .container{padding:1rem}
+}
+</style></head><body>
+<nav class="sticky-nav">
+  <a href="index.html">Book Preview</a>
+  <a href="data.html">Project Data</a>
+</nav>
+
+<div class='container'>
+<h1>What&#x27;s Not In Here &mdash; Project Data</h1>
+<h2 id='config'>Project Configuration</h2>
+<h3>Specifications</h3>
+<table class='data-table'><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody>
+<tr><td><strong>Trim Size</strong></td><td>8.5&quot; x 8.5&quot; (inches)</td></tr>
+<tr><td><strong>Bleed</strong></td><td>0.125&quot;</td></tr>
+<tr><td><strong>Safe Zone</strong></td><td>0.25&quot;</td></tr>
+<tr><td><strong>Page Count</strong></td><td>28</td></tr>
+<tr><td><strong>Color Mode</strong></td><td>CMYK</td></tr>
+<tr><td><strong>ICC Profile</strong></td><td>GRACoL2006_Coated1v2</td></tr>
+<tr><td><strong>Resolution</strong></td><td>300 DPI</td></tr>
+<tr><td><strong>Paper Type</strong></td><td>white-50lb</td></tr>
+</tbody></table>
+<h3>Style</h3>
+<table class='data-table'><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody>
+<tr><td><strong>Art Style</strong></td><td>Whimsical watercolor with soft edges</td></tr>
+<tr><td><strong>Mood</strong></td><td>Warm, dreamy, magical</td></tr>
+<tr><td><strong>Color Palette</strong></td><td><span class='swatch' style='background:#FFE5B4'></span><code>#FFE5B4</code>&nbsp;&nbsp; <span class='swatch' style='background:#87CEEB'></span><code>#87CEEB</code>&nbsp;&nbsp; <span class='swatch' style='background:#DDA0DD'></span><code>#DDA0DD</code>&nbsp;&nbsp; <span class='swatch' style='background:#98FB98'></span><code>#98FB98</code>&nbsp;&nbsp;</td></tr>
+</tbody></table>
+<h3>Generation Settings</h3>
+<table class='data-table'><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody>
+<tr><td><strong>model</strong></td><td>nano-banana-pro</td></tr>
+<tr><td><strong>resolution</strong></td><td>4K</td></tr>
+<tr><td><strong>aspectRatio</strong></td><td>1:1</td></tr>
+<tr><td><strong>variationsPerPage</strong></td><td>1</td></tr>
+</tbody></table>
+<h3>Workflow State</h3>
+<table class='data-table'><thead><tr><th>Step</th><th>Status</th></tr></thead><tbody>
+<tr><td><strong>phase</strong></td><td>init</td></tr>
+<tr><td><strong>modelSheetsApproved</strong></td><td>Yes</td></tr>
+<tr><td><strong>firstPageApproved</strong></td><td>No</td></tr>
+<tr><td><strong>interiorComplete</strong></td><td>No</td></tr>
+<tr><td><strong>coverGenerated</strong></td><td>No</td></tr>
+</tbody></table>
+<h2 id='pages'>Page-by-Page Data</h2>
+<table class='data-table'><thead><tr>
+<th>#</th><th>Type</th><th>Text</th><th>Scene</th><th>Mood</th><th>Characters</th><th>Status</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>story</td>
+<td>Eloy lived in a cozy room, in a house nestled among the tall redwood trees.</td>
+<td>Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.</td>
+<td>Cozy, curious</td>
+<td>eloy</td>
+<td><span class='badge badge-pending'>Review 3 variations</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>story</td>
+<td>Through his window, he could see the mountains and, far away, the sparkling ocean. But Eloy wondered... what&#x27;s out there?</td>
+<td>Whimsical watercolor: View from Eloy&#x27;s perspective looking out the window. Redwood forest in foreground, mountains in middle distance, and a glimmer of ocean on the horizon. Eloy&#x27;s silhouette visible from behind, hands on windowsill. Soft watercolor washes, magical light filtering through trees.</td>
+<td>Longing, curious</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>story</td>
+<td>He found a screwdriver and took all his toys apart. But then they didn&#x27;t work anymore!</td>
+<td>Whimsical watercolor: Eloy sitting on floor surrounded by disassembled toy pieces - wheels, springs, plastic parts scattered everywhere. He holds a screwdriver, looking disappointed. Broken robot, dismantled truck, toy parts all around. Soft edges, muted colors showing his disappointment.</td>
+<td>Disappointed, confused</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>story</td>
+<td>Outside, he found a hose and sprayed water everywhere! But he just got all muddy.</td>
+<td>Whimsical watercolor: Eloy in the yard with a green garden hose, water spraying wildly. He&#x27;s covered in mud splatters, puddles forming around him. Redwood trees in background. Water droplets sparkle in soft watercolor style. His expression shows initial excitement turning to dismay.</td>
+<td>Messy, dismayed</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>story</td>
+<td>Then he climbed onto a backhoe to dig and play. But he only made a big mess!</td>
+<td>Whimsical watercolor: Eloy sitting in the seat of a yellow backhoe construction vehicle, pulling levers. Piles of dirt and rocks scattered around, garden torn up. Redwood forest background. His face shows worry as he realizes the chaos. Soft watercolor rendering with gentle yellows and earth tones.</td>
+<td>Worried, overwhelmed</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>story</td>
+<td>&quot;Maybe happiness is up there!&quot; he thought, climbing into a spaceship that rocketed to outer space.</td>
+<td>Whimsical watercolor: Eloy in a whimsical silver spaceship with large round windows, blasting off from Earth. Planet Earth visible below with redwoods, mountains, and ocean recognizable as tiny details. Stars beginning to appear. Magical, dreamy quality. Motion lines suggesting speed, soft cosmic colors.</td>
+<td>Excited, hopeful</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>story</td>
+<td>But space was so empty and quiet. Nobody was there.</td>
+<td>Whimsical watercolor: Eloy&#x27;s face pressed against the spaceship window, looking out at vast empty darkness dotted with distant stars. His expression is lonely and uncertain. Deep blues and purples, with tiny white stars. Emphasis on the vastness and his smallness. Soft, melancholy watercolor washes.</td>
+<td>Lonely, uncertain</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>8</td>
+<td>story</td>
+<td>The spaceship dove down, down, down into the ocean and became a submarine!</td>
+<td>Whimsical watercolor: The spaceship transforming into a submarine as it plunges through ocean waves. Splash effects, bubbles trailing, transitioning from sky blues to deep ocean blues. Eloy visible through the window, holding on. Dynamic composition showing the dive. Soft watercolor blending of sky and sea.</td>
+<td>Adventurous, surprised</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>9</td>
+<td>story</td>
+<td>Deep underwater, he found strange glowing creatures. But he couldn&#x27;t understand what they were saying.</td>
+<td>Whimsical watercolor: Submarine surrounded by fantastical bioluminescent sea creatures - jellyfish, anglerfish with glowing lures, strange alien-like deep-sea fish. Dark blue-green water, mysterious glowing lights. Eloy visible in submarine, looking confused and a bit scared. Dreamy, ethereal quality.</td>
+<td>Confused, isolated</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>10</td>
+<td>story</td>
+<td>He surfaced and found a giant truck. It grew bigger and BIGGER as he drove it!</td>
+<td>Whimsical watercolor: Eloy driving a massive red truck that&#x27;s growing in size, wheels as tall as trees. The truck is cartoonishly large, dwarfing the redwood forest below. Motion lines suggesting growth and speed. Eloy visible in the cab, eyes wide with wonder. Playful, exaggerated perspective.</td>
+<td>Amazed, exhilarated</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>11</td>
+<td>story</td>
+<td>Soon the truck was SO big, it was driving right on top of the whole Earth!</td>
+<td>Whimsical watercolor: Enormous truck wheels rolling across the curved surface of planet Earth, as if Earth were a road. Continents and oceans visible below. Eloy tiny in the driver&#x27;s seat of the impossibly large truck. Space visible around the Earth&#x27;s curve. Surreal, whimsical composition. Soft cosmic colors.</td>
+<td>Surreal, awestruck</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>12</td>
+<td>story</td>
+<td>Then Eloy saw something that took his breath away—the glowing moon, bright and beautiful.</td>
+<td>Whimsical watercolor: Close-up of Eloy&#x27;s face, eyes wide with wonder, gazing up at a magnificent full moon. Moon takes up much of the composition, glowing soft silver-white. Stars scattered around. Eloy&#x27;s expression shows pure awe. Soft, luminous watercolor washes. Magic in the air.</td>
+<td>Wonder, captivated</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>13</td>
+<td>story</td>
+<td>He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl.</td>
+<td>Whimsical watercolor: Eloy floating/drifting upward through starry space toward the bright moon. A majestic owl with large knowing eyes sits on the moon&#x27;s edge, watching him approach. Moonlight bathes the scene. Soft, dreamy atmosphere. Stars twinkling. Otherworldly, magical quality.</td>
+<td>Mystical, calm</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>14</td>
+<td>story</td>
+<td>The owl spread his wing wide, pointing to everything around them. &quot;What&#x27;s out there...&quot;</td>
+<td>Whimsical watercolor: Wise owl with outstretched wing gesturing to the vastness of space - stars, galaxies, and Earth visible in the distance. Eloy watching with rapt attention. Moon surface beneath them. Cosmic backdrop with soft nebula colors. The owl&#x27;s gesture encompasses the entire universe. Deeply spiritual mood.</td>
+<td>Revelatory, profound</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>15</td>
+<td>story</td>
+<td>Then the owl gently touched Eloy&#x27;s chest. &quot;...is also in here.&quot;</td>
+<td>Whimsical watercolor: Close intimate view of the owl&#x27;s wing tip gently resting on Eloy&#x27;s chest over his heart. Eloy&#x27;s face shows dawning understanding and wonder. Soft glow emanating from where the owl touches. Moon and stars in background. Peaceful, transformative moment.</td>
+<td>Touching, awakening</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>16</td>
+<td>story</td>
+<td>&quot;What&#x27;s not in here,&quot; the owl whispered softly, &quot;doesn&#x27;t exist.&quot;</td>
+<td>Whimsical watercolor: Owl and Eloy sitting together on the moon&#x27;s edge. The owl&#x27;s gaze is warm and knowing. Eloy sits quietly, absorbing the wisdom. The vast universe surrounds them but the moment feels intimate. Soft purples, blues, silver light. Contemplative composition. The wisdom hanging in the air like stardust.</td>
+<td>Profound, still</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>17</td>
+<td>story</td>
+<td>Eloy closed his eyes. And suddenly, he discovered a whole world inside himself.</td>
+<td>Whimsical watercolor: Close-up of Eloy&#x27;s peaceful face, eyes gently closed, slight smile. Around his head, soft glowing auras and subtle light emanations suggesting an inner universe awakening. Dreamy, abstract watercolor washes of warm golds, soft pinks, gentle purples. Magical, transcendent feeling.</td>
+<td>Peaceful, awakening</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>18</td>
+<td>spread-start</td>
+<td>He sat quietly on a rock in the forest, and the world around him felt alive and full.</td>
+<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).</td>
+<td>Present, harmonious</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>19</td>
+<td>spread-companion</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>20</td>
+<td>spread-start</td>
+<td>He sat by the ocean as the sun set, and the beauty inside him matched the beauty around him.</td>
+<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</td>
+<td>Transcendent, beautiful</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>21</td>
+<td>spread-companion</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>22</td>
+<td>spread-start</td>
+<td>He even sat in outer space, and he felt at home everywhere—because home was inside him.</td>
+<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.</td>
+<td>Universal, infinite</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>23</td>
+<td>spread-companion</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>24</td>
+<td>story</td>
+<td>Back in his room, Eloy sat peacefully. His toys were there, each one a reminder of his journey.</td>
+<td>Whimsical watercolor: Eloy sitting cross-legged in the center of his room, eyes closed, peaceful smile. Around him in a circle: the screwdriver, toy hose, miniature backhoe, toy spaceship, toy submarine, toy truck - all the items from his journey. Window shows the same redwood forest view from the beginning. Warm evening light. Everything glowing with quiet magic.</td>
+<td>Complete, peaceful</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>25</td>
+<td>story</td>
+<td>And he knew: everything he&#x27;d been searching for was already inside him—and always had been.</td>
+<td>Whimsical watercolor: Wide view of Eloy&#x27;s room from above. Eloy sitting peacefully in center with eyes closed. His toys arranged in a mandala-like pattern around him. Soft golden light emanates from his heart, filling the entire room with warmth. Through the window, the moon is visible - the owl&#x27;s silhouette barely visible on it, watching over him. The whole scene glows with inner wisdom and completion. Full circle moment.</td>
+<td>Fulfilled, complete, wise</td>
+<td>eloy</td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+<tr>
+<td>26</td>
+<td>blank</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='badge badge-missing'>Not generated</span></td>
+</tr>
+</tbody></table>
+<h3>Page Details</h3>
+<details><summary>Page 1</summary>
+<pre>{
+  &quot;pageNumber&quot;: 1,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;001-page1&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Cozy, curious&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Eloy lived in a cozy room, in a house nestled among the tall redwood trees.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 2</summary>
+<pre>{
+  &quot;pageNumber&quot;: 2,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;002-page2&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: View from Eloy&#x27;s perspective looking out the window. Redwood forest in foreground, mountains in middle distance, and a glimmer of ocean on the horizon. Eloy&#x27;s silhouette visible from behind, hands on windowsill. Soft watercolor washes, magical light filtering through trees.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Longing, curious&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Through his window, he could see the mountains and, far away, the sparkling ocean. But Eloy wondered... what&#x27;s out there?&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 3</summary>
+<pre>{
+  &quot;pageNumber&quot;: 3,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;003-page3&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy sitting on floor surrounded by disassembled toy pieces - wheels, springs, plastic parts scattered everywhere. He holds a screwdriver, looking disappointed. Broken robot, dismantled truck, toy parts all around. Soft edges, muted colors showing his disappointment.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Disappointed, confused&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He found a screwdriver and took all his toys apart. But then they didn&#x27;t work anymore!&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 4</summary>
+<pre>{
+  &quot;pageNumber&quot;: 4,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;004-page4&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy in the yard with a green garden hose, water spraying wildly. He&#x27;s covered in mud splatters, puddles forming around him. Redwood trees in background. Water droplets sparkle in soft watercolor style. His expression shows initial excitement turning to dismay.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Messy, dismayed&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Outside, he found a hose and sprayed water everywhere! But he just got all muddy.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 5</summary>
+<pre>{
+  &quot;pageNumber&quot;: 5,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;005-page5&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy sitting in the seat of a yellow backhoe construction vehicle, pulling levers. Piles of dirt and rocks scattered around, garden torn up. Redwood forest background. His face shows worry as he realizes the chaos. Soft watercolor rendering with gentle yellows and earth tones.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Worried, overwhelmed&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Then he climbed onto a backhoe to dig and play. But he only made a big mess!&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 6</summary>
+<pre>{
+  &quot;pageNumber&quot;: 6,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;006-page6&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy in a whimsical silver spaceship with large round windows, blasting off from Earth. Planet Earth visible below with redwoods, mountains, and ocean recognizable as tiny details. Stars beginning to appear. Magical, dreamy quality. Motion lines suggesting speed, soft cosmic colors.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Excited, hopeful&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;\&quot;Maybe happiness is up there!\&quot; he thought, climbing into a spaceship that rocketed to outer space.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 7</summary>
+<pre>{
+  &quot;pageNumber&quot;: 7,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;007-page7&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy&#x27;s face pressed against the spaceship window, looking out at vast empty darkness dotted with distant stars. His expression is lonely and uncertain. Deep blues and purples, with tiny white stars. Emphasis on the vastness and his smallness. Soft, melancholy watercolor washes.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Lonely, uncertain&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;But space was so empty and quiet. Nobody was there.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 8</summary>
+<pre>{
+  &quot;pageNumber&quot;: 8,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;008-page8&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: The spaceship transforming into a submarine as it plunges through ocean waves. Splash effects, bubbles trailing, transitioning from sky blues to deep ocean blues. Eloy visible through the window, holding on. Dynamic composition showing the dive. Soft watercolor blending of sky and sea.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Adventurous, surprised&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;The spaceship dove down, down, down into the ocean and became a submarine!&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 9</summary>
+<pre>{
+  &quot;pageNumber&quot;: 9,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;009-page9&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Submarine surrounded by fantastical bioluminescent sea creatures - jellyfish, anglerfish with glowing lures, strange alien-like deep-sea fish. Dark blue-green water, mysterious glowing lights. Eloy visible in submarine, looking confused and a bit scared. Dreamy, ethereal quality.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Confused, isolated&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Deep underwater, he found strange glowing creatures. But he couldn&#x27;t understand what they were saying.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 10</summary>
+<pre>{
+  &quot;pageNumber&quot;: 10,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;010-page10&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy driving a massive red truck that&#x27;s growing in size, wheels as tall as trees. The truck is cartoonishly large, dwarfing the redwood forest below. Motion lines suggesting growth and speed. Eloy visible in the cab, eyes wide with wonder. Playful, exaggerated perspective.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Amazed, exhilarated&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He surfaced and found a giant truck. It grew bigger and BIGGER as he drove it!&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 11</summary>
+<pre>{
+  &quot;pageNumber&quot;: 11,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;011-page11&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Enormous truck wheels rolling across the curved surface of planet Earth, as if Earth were a road. Continents and oceans visible below. Eloy tiny in the driver&#x27;s seat of the impossibly large truck. Space visible around the Earth&#x27;s curve. Surreal, whimsical composition. Soft cosmic colors.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Surreal, awestruck&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Soon the truck was SO big, it was driving right on top of the whole Earth!&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 12</summary>
+<pre>{
+  &quot;pageNumber&quot;: 12,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;012-page12&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Close-up of Eloy&#x27;s face, eyes wide with wonder, gazing up at a magnificent full moon. Moon takes up much of the composition, glowing soft silver-white. Stars scattered around. Eloy&#x27;s expression shows pure awe. Soft, luminous watercolor washes. Magic in the air.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Wonder, captivated&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Then Eloy saw something that took his breath away\u2014the glowing moon, bright and beautiful.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 13</summary>
+<pre>{
+  &quot;pageNumber&quot;: 13,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;013-page13&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy floating/drifting upward through starry space toward the bright moon. A majestic owl with large knowing eyes sits on the moon&#x27;s edge, watching him approach. Moonlight bathes the scene. Soft, dreamy atmosphere. Stars twinkling. Otherworldly, magical quality.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Mystical, calm&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 14</summary>
+<pre>{
+  &quot;pageNumber&quot;: 14,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;014-page14&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Wise owl with outstretched wing gesturing to the vastness of space - stars, galaxies, and Earth visible in the distance. Eloy watching with rapt attention. Moon surface beneath them. Cosmic backdrop with soft nebula colors. The owl&#x27;s gesture encompasses the entire universe. Deeply spiritual mood.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Revelatory, profound&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;The owl spread his wing wide, pointing to everything around them. \&quot;What&#x27;s out there...\&quot;&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 15</summary>
+<pre>{
+  &quot;pageNumber&quot;: 15,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;015-page15&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Close intimate view of the owl&#x27;s wing tip gently resting on Eloy&#x27;s chest over his heart. Eloy&#x27;s face shows dawning understanding and wonder. Soft glow emanating from where the owl touches. Moon and stars in background. Peaceful, transformative moment.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Touching, awakening&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Then the owl gently touched Eloy&#x27;s chest. \&quot;...is also in here.\&quot;&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 16</summary>
+<pre>{
+  &quot;pageNumber&quot;: 16,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;016-page16&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Owl and Eloy sitting together on the moon&#x27;s edge. The owl&#x27;s gaze is warm and knowing. Eloy sits quietly, absorbing the wisdom. The vast universe surrounds them but the moment feels intimate. Soft purples, blues, silver light. Contemplative composition. The wisdom hanging in the air like stardust.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Profound, still&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;\&quot;What&#x27;s not in here,\&quot; the owl whispered softly, \&quot;doesn&#x27;t exist.\&quot;&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 17</summary>
+<pre>{
+  &quot;pageNumber&quot;: 17,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;017-page17&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Close-up of Eloy&#x27;s peaceful face, eyes gently closed, slight smile. Around his head, soft glowing auras and subtle light emanations suggesting an inner universe awakening. Dreamy, abstract watercolor washes of warm golds, soft pinks, gentle purples. Magical, transcendent feeling.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Peaceful, awakening&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Eloy closed his eyes. And suddenly, he discovered a whole world inside himself.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 18</summary>
+<pre>{
+  &quot;pageNumber&quot;: 18,
+  &quot;type&quot;: &quot;spread-start&quot;,
+  &quot;folder&quot;: &quot;018-019-spread&quot;,
+  &quot;companionPage&quot;: 19,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Present, harmonious&quot;,
+    &quot;gutterNote&quot;: &quot;Eloy positioned right, forest scene flows across gutter from left&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He sat quietly on a rock in the forest, and the world around him felt alive and full.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 19</summary>
+<pre>{
+  &quot;pageNumber&quot;: 19,
+  &quot;type&quot;: &quot;spread-companion&quot;,
+  &quot;folder&quot;: &quot;018-019-spread&quot;,
+  &quot;spreadStart&quot;: 18
+}</pre>
+</details>
+<details><summary>Page 20</summary>
+<pre>{
+  &quot;pageNumber&quot;: 20,
+  &quot;type&quot;: &quot;spread-start&quot;,
+  &quot;folder&quot;: &quot;020-021-spread&quot;,
+  &quot;companionPage&quot;: 21,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Transcendent, beautiful&quot;,
+    &quot;gutterNote&quot;: &quot;Eloy on left, sunset flows across gutter to right&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He sat by the ocean as the sun set, and the beauty inside him matched the beauty around him.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 21</summary>
+<pre>{
+  &quot;pageNumber&quot;: 21,
+  &quot;type&quot;: &quot;spread-companion&quot;,
+  &quot;folder&quot;: &quot;020-021-spread&quot;,
+  &quot;spreadStart&quot;: 20
+}</pre>
+</details>
+<details><summary>Page 22</summary>
+<pre>{
+  &quot;pageNumber&quot;: 22,
+  &quot;type&quot;: &quot;spread-start&quot;,
+  &quot;folder&quot;: &quot;022-023-spread&quot;,
+  &quot;companionPage&quot;: 23,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Universal, infinite&quot;,
+    &quot;gutterNote&quot;: &quot;Eloy centered across gutter, cosmos spreads both pages&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;He even sat in outer space, and he felt at home everywhere\u2014because home was inside him.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 23</summary>
+<pre>{
+  &quot;pageNumber&quot;: 23,
+  &quot;type&quot;: &quot;spread-companion&quot;,
+  &quot;folder&quot;: &quot;022-023-spread&quot;,
+  &quot;spreadStart&quot;: 22
+}</pre>
+</details>
+<details><summary>Page 24</summary>
+<pre>{
+  &quot;pageNumber&quot;: 24,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;024-page24&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Eloy sitting cross-legged in the center of his room, eyes closed, peaceful smile. Around him in a circle: the screwdriver, toy hose, miniature backhoe, toy spaceship, toy submarine, toy truck - all the items from his journey. Window shows the same redwood forest view from the beginning. Warm evening light. Everything glowing with quiet magic.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Complete, peaceful&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;Back in his room, Eloy sat peacefully. His toys were there, each one a reminder of his journey.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 25</summary>
+<pre>{
+  &quot;pageNumber&quot;: 25,
+  &quot;type&quot;: &quot;story&quot;,
+  &quot;folder&quot;: &quot;025-page25&quot;,
+  &quot;scene&quot;: {
+    &quot;description&quot;: &quot;Whimsical watercolor: Wide view of Eloy&#x27;s room from above. Eloy sitting peacefully in center with eyes closed. His toys arranged in a mandala-like pattern around him. Soft golden light emanates from his heart, filling the entire room with warmth. Through the window, the moon is visible - the owl&#x27;s silhouette barely visible on it, watching over him. The whole scene glows with inner wisdom and completion. Full circle moment.&quot;,
+    &quot;characters&quot;: [
+      &quot;eloy&quot;
+    ],
+    &quot;mood&quot;: &quot;Fulfilled, complete, wise&quot;
+  },
+  &quot;text&quot;: {
+    &quot;content&quot;: &quot;And he knew: everything he&#x27;d been searching for was already inside him\u2014and always had been.&quot;,
+    &quot;position&quot;: &quot;bottom&quot;
+  }
+}</pre>
+</details>
+<details><summary>Page 26</summary>
+<pre>{
+  &quot;pageNumber&quot;: 26,
+  &quot;type&quot;: &quot;blank&quot;,
+  &quot;folder&quot;: &quot;026-page26&quot;
+}</pre>
+</details>
+<h2 id='characters'>Character Manifest</h2>
+<div class='char-grid'>
+<div class='char-card'>
+<img src='images/characters/eloy-primary.jpg' alt='eloy' loading='lazy'>
+<div class='card-body'>
+<div class='char-name'>Eloy</div>
+<div class='char-role'>protagonist</div>
+<table class='data-table'><tbody>
+<tr><td><strong>id</strong></td><td>eloy</td></tr>
+<tr><td><strong>name</strong></td><td>Eloy</td></tr>
+<tr><td><strong>description</strong></td><td>A 4-year-old boy with dark wavy hair, warm brown eyes, wearing a pink t-shirt and patterned pants</td></tr>
+<tr><td><strong>role</strong></td><td>protagonist</td></tr>
+<tr><td><strong>referenceImage</strong></td><td>eloy/approved_model_sheet_front.png</td></tr>
+<tr><td><strong>trait.age</strong></td><td>4</td></tr>
+<tr><td><strong>trait.hairColor</strong></td><td>dark brown</td></tr>
+<tr><td><strong>trait.hairStyle</strong></td><td>wavy, slightly tousled</td></tr>
+<tr><td><strong>trait.eyeColor</strong></td><td>brown</td></tr>
+<tr><td><strong>trait.skinTone</strong></td><td>light tan</td></tr>
+<tr><td><strong>trait.signature</strong></td><td>pink t-shirt and colorful patterned pants</td></tr>
+<tr><td><strong>promptSnippet</strong></td><td>4-year-old boy Eloy with dark wavy hair, brown eyes, pink t-shirt, and patterned pants</td></tr>
+<tr><td><strong>modelSheet.primary</strong></td><td>approved_model_sheet.png</td></tr>
+<tr><td><strong>modelSheet.front</strong></td><td>approved_model_sheet_front.png</td></tr>
+</tbody></table>
+</div></div>
+</div>
+<h2 id='logs'>Generation Logs</h2>
+<p style='color:#9a8a7f'>No generation logs found.</p>
+<h2 id='palette'>Color Palette</h2>
+<div style='display:flex;gap:1rem;flex-wrap:wrap'>
+<div style='text-align:center'><div style='width:80px;height:80px;background:#FFE5B4;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#FFE5B4</div></div>
+<div style='text-align:center'><div style='width:80px;height:80px;background:#87CEEB;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#87CEEB</div></div>
+<div style='text-align:center'><div style='width:80px;height:80px;background:#DDA0DD;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#DDA0DD</div></div>
+<div style='text-align:center'><div style='width:80px;height:80px;background:#98FB98;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#98FB98</div></div>
+</div>
+<footer>Generated 2026-02-11 01:22 UTC</footer>
+</div></body></html>
