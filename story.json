@@ -1,0 +1,316 @@
+{
+  "title": "What's Not In Here",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "type": "story",
+      "folder": "001-page1",
+      "scene": {
+        "description": "Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.",
+        "characters": ["eloy"],
+        "mood": "Cozy, curious"
+      },
+      "text": {
+        "content": "\"Eloy, clean up in here and then you'll be free,\" said Mama.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 2,
+      "type": "story",
+      "folder": "002-page2",
+      "scene": {
+        "description": "Whimsical watercolor: View from Eloy's perspective looking out the window. Redwood forest in foreground, mountains in middle distance, and a glimmer of ocean on the horizon. Eloy's silhouette visible from behind, hands on windowsill. Soft watercolor washes, magical light filtering through trees.",
+        "characters": ["eloy"],
+        "mood": "Longing, curious"
+      },
+      "text": {
+        "content": "\"That's boring,\" he said. Maybe he didn't want to be free.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 3,
+      "type": "story",
+      "folder": "003-page3",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy sitting on floor surrounded by disassembled toy pieces - wheels, springs, plastic parts scattered everywhere. He holds a screwdriver, focused and curious. A toy garbage truck sits in front of him, partially taken apart with batteries visible. Other broken toys around - robot, toy parts. Soft edges, warm curious mood.",
+        "characters": ["eloy"],
+        "mood": "Curious, focused"
+      },
+      "text": {
+        "content": "He found a screwdriver and started taking things apart. \"I just want to see what kind of batteries my garbage truck has\"",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 4,
+      "type": "story",
+      "folder": "004-page4",
+      "scene": {
+        "description": "Whimsical watercolor: View from behind Eloy as he holds a garden hose with a mist nozzle, spraying fine water droplets into the air. The sun is behind him (and us), creating a beautiful rainbow arc in the mist spray in front of him. Magical light refraction, tiny jewels of water catching sunlight. Redwood trees in background. Dreamy, magical atmosphere. Soft watercolor washes showing the ephemeral beauty of the rainbow.",
+        "characters": ["eloy"],
+        "mood": "Wonder, magical"
+      },
+      "text": {
+        "content": "To make a rainbow, you just have to face your shadow. Eloy's dad had taught him that. He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 5,
+      "type": "story",
+      "folder": "005-page5",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy sitting in the seat of a yellow backhoe construction vehicle, pulling levers. Piles of dirt and rocks scattered around, garden torn up. Redwood forest background. His face shows worry as he realizes the chaos. Soft watercolor rendering with gentle yellows and earth tones.",
+        "characters": ["eloy"],
+        "mood": "Worried, overwhelmed"
+      },
+      "text": {
+        "content": "He jumped into his favorite big machine and started tearing up the earth. Words melted into rumbling sounds and he sang repetitive songs of screeches and beeps.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 6,
+      "type": "story",
+      "folder": "006-page6",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy in a whimsical silver spaceship with large round windows, blasting off from Earth. Planet Earth visible below with redwoods, mountains, and ocean recognizable as tiny details. Stars beginning to appear. Magical, dreamy quality. Motion lines suggesting speed, soft cosmic colors.",
+        "characters": ["eloy"],
+        "mood": "Excited, hopeful"
+      },
+      "text": {
+        "content": "In a rocket ship he built all by himself, which was just the right size and just the right shape, he blasted up and away to see how far he could get.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 7,
+      "type": "story",
+      "folder": "007-page7",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy's face pressed against the spaceship window, looking out at vast empty darkness dotted with distant stars. His expression is lonely and uncertain. Deep blues and purples, with tiny white stars. Emphasis on the vastness and his smallness. Soft, melancholy watercolor washes.",
+        "characters": ["eloy"],
+        "mood": "Lonely, uncertain"
+      },
+      "text": {
+        "content": "But space was so empty and quiet. Nobody was there.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 8,
+      "type": "story",
+      "folder": "008-page8",
+      "scene": {
+        "description": "Whimsical watercolor: The spaceship transforming into a submarine as it plunges through ocean waves. Splash effects, bubbles trailing, transitioning from sky blues to deep ocean blues. Eloy visible through the window, holding on. Dynamic composition showing the dive. Soft watercolor blending of sky and sea.",
+        "characters": ["eloy"],
+        "mood": "Adventurous, surprised"
+      },
+      "text": {
+        "content": "The spaceship dove down, down, down into the ocean and became a submarine!",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 9,
+      "type": "story",
+      "folder": "009-page9",
+      "scene": {
+        "description": "Whimsical watercolor: Submarine surrounded by fantastical bioluminescent sea creatures - jellyfish, anglerfish with glowing lures, strange alien-like deep-sea fish. Dark blue-green water, mysterious glowing lights. Eloy visible in submarine with an expression of stunned stillness, face full of wonder and quiet awe. Dreamy, ethereal quality.",
+        "characters": ["eloy"],
+        "mood": "Awed, still"
+      },
+      "text": {
+        "content": "Deep underwater, he found very strange creatures with very strange secrets that only he could understand.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 10,
+      "type": "story",
+      "folder": "010-page10",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy in a car with wheels emerging from the ocean onto the shore/beach. Water splashing off the vehicle as it transitions from submarine to wheeled car. Behind him in the ocean, various fantastical sea creatures - jellyfish, anglerfish, bioluminescent fish - poking their heads above water or jumping playfully out of the waves in farewell. Lots of joyful activity in the background. Transition from deep ocean blues to beach/shore colors. Dynamic, magical moment of transformation.",
+        "characters": ["eloy"],
+        "mood": "Joyful transition, magical"
+      },
+      "text": {
+        "content": "When he emerged from the deep, his vehicle grew wheels, and the very strange creatures seemed to say goodbye in their very strange way.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 11,
+      "type": "story",
+      "folder": "011-page11",
+      "scene": {
+        "description": "Whimsical watercolor: Enormous truck wheels rolling across the curved surface of planet Earth, as if Earth were a road. Continents and oceans visible below. Eloy tiny in the driver's seat of the impossibly large truck. Space visible around the Earth's curve. Surreal, whimsical composition. Soft cosmic colors.",
+        "characters": ["eloy"],
+        "mood": "Surreal, awestruck"
+      },
+      "text": {
+        "content": "The more he drove, the bigger it grew. Soon he could barely hold the wheel. He remembered something his grandmother had said: \"When you find yourself becoming too strong, that's when you must be most gentle.\"",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 12,
+      "type": "story",
+      "folder": "012-page12",
+      "scene": {
+        "description": "Whimsical watercolor: Close-up of Eloy's face, eyes wide with wonder, gazing up at a magnificent full moon. Moon takes up much of the composition, glowing soft silver-white. Stars scattered around. Eloy's expression shows pure awe. Soft, luminous watercolor washes. Magic in the air.",
+        "characters": ["eloy"],
+        "mood": "Wonder, captivated"
+      },
+      "text": {
+        "content": "Then Eloy saw something that took his breath away—the glowing moon, bright and beautiful.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 13,
+      "type": "story",
+      "folder": "013-page13",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy floating/drifting upward through starry space toward the bright moon. A majestic owl with large knowing eyes sits on the moon's edge, watching him approach. Moonlight bathes the scene. Soft, dreamy atmosphere. Stars twinkling. Otherworldly, magical quality.",
+        "characters": ["eloy"],
+        "mood": "Mystical, calm"
+      },
+      "text": {
+        "content": "He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 14,
+      "type": "story",
+      "folder": "014-page14",
+      "scene": {
+        "description": "Whimsical watercolor: Wise owl with outstretched wing gesturing to the vastness of space - stars, galaxies, and Earth visible in the distance. Eloy watching with rapt attention. Moon surface beneath them. Cosmic backdrop with soft nebula colors. The owl's gesture encompasses the entire universe. Deeply spiritual mood.",
+        "characters": ["eloy"],
+        "mood": "Revelatory, profound"
+      },
+      "text": {
+        "content": "\"What's out there…\" the owl said slowly",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 15,
+      "type": "story",
+      "folder": "015-page15",
+      "scene": {
+        "description": "Whimsical watercolor: Close intimate view of the owl's wing tip gently resting on Eloy's chest over his heart. Eloy's face shows dawning understanding and wonder. Soft glow emanating from where the owl touches. Moon and stars in background. Peaceful, transformative moment.",
+        "characters": ["eloy"],
+        "mood": "Touching, awakening"
+      },
+      "text": {
+        "content": "\"…is also in here.\" The owl gently touched the center of Eloy's chest. \"What's not in here, doesn't exist.\"",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 16,
+      "type": "story",
+      "folder": "016-page16",
+      "scene": {
+        "description": "Whimsical watercolor: Close-up of Eloy's peaceful face, eyes gently closed, slight smile. Around his head, soft glowing auras and subtle light emanations suggesting an inner universe awakening. Dreamy, abstract watercolor washes of warm golds, soft pinks, gentle purples. Magical, transcendent feeling.",
+        "characters": ["eloy"],
+        "mood": "Peaceful, awakening"
+      },
+      "text": {
+        "content": "Eloy closed his eyes. And suddenly, he discovered a whole world inside himself.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 17,
+      "type": "spread-start",
+      "folder": "017-018-spread",
+      "companionPage": 18,
+      "scene": {
+        "description": "Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose, eyes closed, on a large rock positioned in the right third of the frame. Left third shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows seamlessly from left (nature scene) to right (Eloy).",
+        "characters": ["eloy"],
+        "mood": "Present, harmonious",
+        "gutterNote": "Eloy positioned in right third, forest scene flows through center zone from left"
+      }
+    },
+    {
+      "pageNumber": 18,
+      "type": "spread-companion",
+      "folder": "017-018-spread",
+      "spreadStart": 17
+    },
+    {
+      "pageNumber": 19,
+      "type": "spread-start",
+      "folder": "019-020-spread",
+      "companionPage": 20,
+      "scene": {
+        "description": "Whimsical watercolor panoramic landscape: Eloy sitting in meditation, eyes closed, in the left third of the frame, overlooking the ocean. Right third shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy's inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.",
+        "characters": ["eloy"],
+        "mood": "Transcendent, beautiful",
+        "gutterNote": "Eloy in left third, sunset flows through center zone to right third"
+      }
+    },
+    {
+      "pageNumber": 20,
+      "type": "spread-companion",
+      "folder": "019-020-spread",
+      "spreadStart": 19
+    },
+    {
+      "pageNumber": 21,
+      "type": "spread-start",
+      "folder": "021-022-spread",
+      "companionPage": 22,
+      "scene": {
+        "description": "Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose in the right third of the frame, eyes closed, floating peacefully in deep space. Simple, calm composition with dark cosmic blues and purples. Distant stars, a few planets, gentle nebulae in background. Minimal elements. He's serene, at complete peace. The vast darkness of space surrounds him. Quiet, profound, infinite feeling.",
+        "characters": ["eloy"],
+        "mood": "Universal, infinite, serene",
+        "gutterNote": "Eloy in right third, dark space flows through center zone from left third"
+      }
+    },
+    {
+      "pageNumber": 22,
+      "type": "spread-companion",
+      "folder": "021-022-spread",
+      "spreadStart": 21
+    },
+    {
+      "pageNumber": 23,
+      "type": "story",
+      "folder": "023-page23",
+      "scene": {
+        "description": "Whimsical watercolor: Eloy sitting cross-legged in the center of his room, eyes closed, peaceful smile. Around him in a circle: the screwdriver, toy garbage truck (partially disassembled with batteries visible), toy hose with mist nozzle, miniature yellow backhoe, toy rocket ship, toy submarine, toy car with wheels - all the actual items from his journey through the story. Window shows the same redwood forest view from the beginning. Warm evening light. Everything glowing with quiet magic.",
+        "characters": ["eloy"],
+        "mood": "Complete, peaceful"
+      },
+      "text": {
+        "content": "\"Eloy? Eloy, where are you?\" Eloy heard the sweet sound of his mama calling from far far away.",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 24,
+      "type": "story",
+      "folder": "024-page24",
+      "scene": {
+        "description": "Whimsical watercolor: Wide view of Eloy's room from above. Eloy sitting peacefully in center with eyes closed. His toys arranged in a mandala-like pattern around him. Soft golden light emanates from his heart, filling the entire room with warmth. Through the window, the moon is visible - the owl's silhouette barely visible on it, watching over him. The whole scene glows with inner wisdom and completion. Full circle moment.",
+        "characters": ["eloy"],
+        "mood": "Fulfilled, complete, wise"
+      },
+      "text": {
+        "content": "\"I'm right here, mama\"",
+        "position": "bottom"
+      }
+    },
+    {
+      "pageNumber": 25,
+      "type": "blank",
+      "folder": "025-page25"
+    }
+  ]
+}
