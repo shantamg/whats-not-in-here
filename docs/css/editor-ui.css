@@ -619,6 +619,12 @@
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 0.75rem;
+    display: none; /* Hidden by default */
+}
+
+/* Show revert button only when page has changes */
+.page-card.has-changes .revert-page-btn {
+    display: block;
 }
 
 .revert-page-btn:hover {

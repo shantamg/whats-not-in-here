@@ -178,6 +178,9 @@ function updatePageChanges(data) {
     
     // Sort pages
     currentChanges.pages.sort((a, b) => a.pageNumber - b.pageNumber);
+    
+    // Update page card visual indicator
+    updatePageCardIndicator(pageNumber);
 }
 
 /**
@@ -191,6 +194,29 @@ function updateVersionChanges(data) {
         currentChanges.selectedVersions[pageNumber] = version;
     } else {
         delete currentChanges.selectedVersions[pageNumber];
+    }
+    
+    // Update page card visual indicator
+    updatePageCardIndicator(pageNumber);
+}
+
+/**
+ * Update page card visual indicator (add/remove has-changes class)
+ */
+function updatePageCardIndicator(pageNumber) {
+    // Find the page card
+    const card = document.querySelector(`.page-card[data-page-number="${pageNumber}"]`);
+    if (!card) return;
+    
+    // Check if page has any changes
+    const hasPageChanges = currentChanges.pages.some(p => p.pageNumber === parseInt(pageNumber));
+    const hasVersionChange = currentChanges.selectedVersions.hasOwnProperty(pageNumber);
+    
+    // Add or remove has-changes class
+    if (hasPageChanges || hasVersionChange) {
+        card.classList.add('has-changes');
+    } else {
+        card.classList.remove('has-changes');
     }
 }
 
@@ -389,6 +415,7 @@ export function revertPageChanges(pageNumber) {
     delete currentChanges.selectedVersions[pageNumber];
     
     updateChangesDisplay();
+    updatePageCardIndicator(pageNumber);
     
     showNotification(`✓ Page ${pageNumber} changes reverted`, 'success');
 }

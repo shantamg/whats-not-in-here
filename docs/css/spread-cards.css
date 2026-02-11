@@ -13,7 +13,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Spread images container - display both pages side by side */
+/* Spread images container - display single panoramic image */
 .spread-images {
     display: flex;
     position: relative;
@@ -22,15 +22,19 @@
 }
 
 .spread-images img {
-    width: 50%;
+    width: 100%;
     height: auto;
     display: block;
-    flex: 1;
 }
 
-/* First image (left page) */
+/* Hide second image if it exists (spreads should use single panoramic image) */
+.spread-images img:nth-child(2) {
+    display: none;
+}
+
+/* First image (full width) */
 .spread-images img:first-child {
-    border-right: 1px solid #222;
+    border-right: none;
 }
 
 /* Spread card body */

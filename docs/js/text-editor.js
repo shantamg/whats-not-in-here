@@ -220,8 +220,7 @@ function removeResizeHandles(overlay) {
 function startDrag(e) {
     if (e.target.classList.contains('resize-handle')) return;
     
-    e.preventDefault();
-    e.stopPropagation();
+    // Don't prevent default or stop propagation yet - let click through first
     
     const overlay = selectedOverlay;
     const container = overlay.closest('.page-image-container');
@@ -234,7 +233,8 @@ function startDrag(e) {
         startX: e.clientX,
         startY: e.clientY,
         startLeft: overlay.offsetLeft,
-        startTop: overlay.offsetTop
+        startTop: overlay.offsetTop,
+        hasMoved: false
     };
     
     document.addEventListener('mousemove', onDrag);
@@ -246,6 +246,17 @@ function onDrag(e) {
     
     const dx = e.clientX - dragState.startX;
     const dy = e.clientY - dragState.startY;
+    
+    // Only start dragging if mouse moved more than 5px (prevents accidental drags on click)
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    if (!dragState.hasMoved && distance < 5) {
+        return;
+    }
+    
+    if (!dragState.hasMoved) {
+        dragState.hasMoved = true;
+        dragState.overlay.style.cursor = 'grabbing';
+    }
     
     const newLeft = dragState.startLeft + dx;
     const newTop = dragState.startTop + dy;
@@ -261,25 +272,38 @@ function onDrag(e) {
 function endDrag() {
     if (!dragState) return;
     
-    // Save position
+    const hasMoved = dragState.hasMoved;
     const overlay = dragState.overlay;
-    const card = overlay.closest('.page-card');
-    const pageNumber = card.getAttribute('data-page-number');
     
-    const containerWidth = dragState.containerRect.width;
-    const containerHeight = dragState.containerRect.height;
+    // Restore cursor
+    overlay.style.cursor = 'move';
     
-    const leftPercent = (overlay.offsetLeft / containerWidth) * 100;
-    const topPercent = (overlay.offsetTop / containerHeight) * 100;
-    
-    // Update changes
-    registerChange('page', {
-        pageNumber: pageNumber,
-        changes: {
-            leftPercent: leftPercent,
-            topPercent: topPercent
-        }
-    });
+    // Only save position if actually moved
+    if (hasMoved) {
+        const card = overlay.closest('.page-card');
+        const pageNumber = card.getAttribute('data-page-number');
+        
+        const containerWidth = dragState.containerRect.width;
+        const containerHeight = dragState.containerRect.height;
+        
+        const leftPercent = (overlay.offsetLeft / containerWidth) * 100;
+        const topPercent = (overlay.offsetTop / containerHeight) * 100;
+        
+        // Update the overlay's text spec with new position
+        const spec = JSON.parse(overlay.getAttribute('data-text-spec') || '{}');
+        spec.leftPercent = leftPercent;
+        spec.topPercent = topPercent;
+        overlay.setAttribute('data-text-spec', JSON.stringify(spec));
+        
+        // Update changes
+        registerChange('page', {
+            pageNumber: pageNumber,
+            changes: {
+                leftPercent: leftPercent,
+                topPercent: topPercent
+            }
+        });
+    }
     
     document.removeEventListener('mousemove', onDrag);
     document.removeEventListener('mouseup', endDrag);
@@ -366,16 +390,31 @@ function endResize() {
     const pageNumber = card.getAttribute('data-page-number');
     
     const containerWidth = resizeState.containerRect.width;
+    const containerHeight = resizeState.containerRect.height;
     
     const widthPercent = (overlay.offsetWidth / containerWidth) * 100;
+    const leftPercent = (overlay.offsetLeft / containerWidth) * 100;
+    const topPercent = (overlay.offsetTop / containerHeight) * 100;
+    
+    // Update the overlay's text spec with new dimensions and position
+    const spec = JSON.parse(overlay.getAttribute('data-text-spec') || '{}');
+    spec.widthPercent = widthPercent;
+    spec.leftPercent = leftPercent;
+    spec.topPercent = topPercent;
+    overlay.setAttribute('data-text-spec', JSON.stringify(spec));
     
     // Update changes
     registerChange('page', {
         pageNumber: pageNumber,
         changes: {
-            widthPercent: widthPercent
+            widthPercent: widthPercent,
+            leftPercent: leftPercent,
+            topPercent: topPercent
         }
     });
+    
+    // Re-render text with new dimensions
+    updateOverlay(overlay);
     
     document.removeEventListener('mousemove', onResize);
     document.removeEventListener('mouseup', endResize);
@@ -556,6 +595,11 @@ function updatePageFont(e) {
     const card = selectedOverlay.closest('.page-card');
     const pageNumber = card.getAttribute('data-page-number');
     
+    // Update the overlay's text spec
+    const spec = JSON.parse(selectedOverlay.getAttribute('data-text-spec') || '{}');
+    spec.font = font;
+    selectedOverlay.setAttribute('data-text-spec', JSON.stringify(spec));
+    
     registerChange('page', {
         pageNumber: pageNumber,
         changes: { font: font }
@@ -579,6 +623,12 @@ function updatePageFontSize(e) {
     const card = selectedOverlay.closest('.page-card');
     const pageNumber = card.getAttribute('data-page-number');
     
+    // Update the overlay's text spec data attribute with new font size
+    const spec = JSON.parse(selectedOverlay.getAttribute('data-text-spec') || '{}');
+    spec.fontSize = realSize;
+    spec.displayFontSize = displaySize;
+    selectedOverlay.setAttribute('data-text-spec', JSON.stringify(spec));
+    
     registerChange('page', {
         pageNumber: pageNumber,
         changes: {
@@ -587,6 +637,7 @@ function updatePageFontSize(e) {
         }
     });
     
+    // Re-render the text with updated size
     updateOverlay(selectedOverlay);
 }
 
@@ -599,6 +650,11 @@ function updatePageColor(e) {
     const color = e.target.value;
     const card = selectedOverlay.closest('.page-card');
     const pageNumber = card.getAttribute('data-page-number');
+    
+    // Update the overlay's text spec
+    const spec = JSON.parse(selectedOverlay.getAttribute('data-text-spec') || '{}');
+    spec.color = color;
+    selectedOverlay.setAttribute('data-text-spec', JSON.stringify(spec));
     
     registerChange('page', {
         pageNumber: pageNumber,
@@ -621,6 +677,11 @@ function updateAlignment(alignment) {
     
     const card = selectedOverlay.closest('.page-card');
     const pageNumber = card.getAttribute('data-page-number');
+    
+    // Update the overlay's text spec
+    const spec = JSON.parse(selectedOverlay.getAttribute('data-text-spec') || '{}');
+    spec.alignment = alignment;
+    selectedOverlay.setAttribute('data-text-spec', JSON.stringify(spec));
     
     registerChange('page', {
         pageNumber: pageNumber,
@@ -671,7 +732,20 @@ function updateOverlay(overlay) {
     const spec = JSON.parse(overlay.getAttribute('data-text-spec') || '{}');
     const pageType = overlay.getAttribute('data-page-type');
     
+    const wasSelected = overlay.classList.contains('selected');
+    
     renderTextOverlay(card, spec, pageType);
+    
+    // If it was selected, re-select it to restore event handlers
+    if (wasSelected) {
+        const newOverlay = card.querySelector('.text-overlay');
+        if (newOverlay) {
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                selectTextOverlay(newOverlay);
+            }, 10);
+        }
+    }
 }
 
 /**
