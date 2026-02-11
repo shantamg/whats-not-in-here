@@ -103,14 +103,17 @@ table.data-table td{background:#fff}
 <tr><td><strong>resolution</strong></td><td>4K</td></tr>
 <tr><td><strong>aspectRatio</strong></td><td>1:1</td></tr>
 <tr><td><strong>variationsPerPage</strong></td><td>1</td></tr>
+<tr><td><strong>negativePrompts</strong></td><td>[&#x27;scary&#x27;, &#x27;violent&#x27;, &#x27;dark&#x27;, &#x27;realistic photo&#x27;]</td></tr>
 </tbody></table>
 <h3>Workflow State</h3>
 <table class='data-table'><thead><tr><th>Step</th><th>Status</th></tr></thead><tbody>
-<tr><td><strong>phase</strong></td><td>init</td></tr>
+<tr><td><strong>phase</strong></td><td>interior-generation</td></tr>
 <tr><td><strong>modelSheetsApproved</strong></td><td>Yes</td></tr>
-<tr><td><strong>firstPageApproved</strong></td><td>No</td></tr>
+<tr><td><strong>firstPageApproved</strong></td><td>Yes</td></tr>
 <tr><td><strong>interiorComplete</strong></td><td>No</td></tr>
 <tr><td><strong>coverGenerated</strong></td><td>No</td></tr>
+<tr><td><strong>approvedVariations</strong></td><td>{}</td></tr>
+<tr><td><strong>completedPages</strong></td><td>[]</td></tr>
 </tbody></table>
 <h2 id='pages'>Page-by-Page Data</h2>
 <table class='data-table'><thead><tr>
@@ -119,11 +122,11 @@ table.data-table td{background:#fff}
 <tr>
 <td>1</td>
 <td>story</td>
-<td>Eloy lived in a cozy room, in a house nestled among the tall redwood trees.</td>
+<td>&quot;Eloy, clean your room please,&quot; said Mama.</td>
 <td>Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.</td>
 <td>Cozy, curious</td>
 <td>eloy</td>
-<td><span class='badge badge-pending'>Review 3 variations</span></td>
+<td><span class='badge badge-approved'>Approved (v2)</span></td>
 </tr>
 <tr>
 <td>2</td>
@@ -365,7 +368,7 @@ table.data-table td{background:#fff}
     &quot;mood&quot;: &quot;Cozy, curious&quot;
   },
   &quot;text&quot;: {
-    &quot;content&quot;: &quot;Eloy lived in a cozy room, in a house nestled among the tall redwood trees.&quot;,
+    &quot;content&quot;: &quot;\&quot;Eloy, clean your room please,\&quot; said Mama.&quot;,
     &quot;position&quot;: &quot;bottom&quot;
   }
 }</pre>
@@ -819,5 +822,5 @@ table.data-table td{background:#fff}
 <div style='text-align:center'><div style='width:80px;height:80px;background:#DDA0DD;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#DDA0DD</div></div>
 <div style='text-align:center'><div style='width:80px;height:80px;background:#98FB98;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#98FB98</div></div>
 </div>
-<footer>Generated 2026-02-11 02:35 UTC</footer>
+<footer>Generated 2026-02-11 02:48 UTC</footer>
 </div></body></html>
