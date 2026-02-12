@@ -11,8 +11,18 @@
         "mood": "Cozy, curious"
       },
       "text": {
-        "content": "\"Eloy, clean up in here and then you'll be free,\" said Mama.",
-        "position": "bottom"
+        "content": "\"Eloy, clean up in here\n and then you'll be free,\" Mama said patiently.",
+        "position": "custom",
+        "font": "Overlock",
+        "fontSize": 42,
+        "lineHeight": 1,
+        "letterSpacing": 0,
+        "color": "#000000",
+        "align": "left",
+        "leftPercent": 24.77,
+        "topPercent": 59.37,
+        "widthPercent": 71.9,
+        "heightPercent": 23.6
       }
     },
     {
@@ -25,8 +35,18 @@
         "mood": "Longing, curious"
       },
       "text": {
-        "content": "\"That's boring,\" he said. Maybe he didn't want to be free.",
-        "position": "bottom"
+        "content": "\"That's boring,\" he whined. Maybe he didn't want to be free.",
+        "position": "custom",
+        "font": "Overlock",
+        "fontSize": 42,
+        "lineHeight": 1.2,
+        "letterSpacing": 0,
+        "color": "#000000",
+        "align": "right",
+        "leftPercent": 28.63,
+        "topPercent": 29.47,
+        "widthPercent": 37.7,
+        "heightPercent": 17.8
       }
     },
     {
