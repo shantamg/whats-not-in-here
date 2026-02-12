@@ -11,7 +11,7 @@
         "mood": "Cozy, curious"
       },
       "text": {
-        "content": "\"Eloy, clean up in here\n and then you'll be free,\" Mama said patiently.",
+        "content": "\"Eloy, clean up in here\n      and then you'll be            free,\" \n                    Mama said          patiently.",
         "position": "custom",
         "font": "Overlock",
         "fontSize": 42,
@@ -35,7 +35,7 @@
         "mood": "Longing, curious"
       },
       "text": {
-        "content": "\"That's boring,\" he whined. Maybe he didn't want to be free.",
+        "content": "\"That's boring,\"\nhe whined. Maybe he didn't want to be free.",
         "position": "custom",
         "font": "Overlock",
         "fontSize": 42,
