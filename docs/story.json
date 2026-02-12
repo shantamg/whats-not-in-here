@@ -36,37 +36,69 @@
     },
     {
       "pageNumber": 3,
-      "text": {
-        "content": "He found a screwdriver and started taking things apart. \"I just want to see what kind of batteries my garbage truck has\"",
-        "position": "custom",
-        "font": "Overlock",
-        "fontSize": 42,
-        "lineHeight": 1.2,
-        "letterSpacing": 0,
-        "color": "#000000",
-        "align": "left",
-        "leftPercent": 5.33,
-        "topPercent": 5,
-        "widthPercent": 71.33,
-        "heightPercent": 20.17
-      }
+      "text": [
+        {
+          "content": "He found a screwdriver\nand started taking\nthings apart.",
+          "position": "custom",
+          "font": "Overlock",
+          "fontSize": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "color": "#000000",
+          "align": "left",
+          "leftPercent": 7.33,
+          "topPercent": 7.5,
+          "widthPercent": 44.53,
+          "heightPercent": 17.33
+        },
+        {
+          "content": "\"I just want to\nsee what kind of\nbatteries my\ngarbage truck has.\"",
+          "position": "custom",
+          "font": "Overlock",
+          "fontSize": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "color": "#000000",
+          "align": "right",
+          "leftPercent": 57,
+          "topPercent": 17.83,
+          "widthPercent": 35.7,
+          "heightPercent": 19.8
+        }
+      ]
     },
     {
       "pageNumber": 4,
-      "text": {
-        "content": "To make a rainbow, you just have to face your shadow. Eloy's dad had taught him that. He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared.",
-        "position": "custom",
-        "font": "Overlock",
-        "fontSize": 42,
-        "lineHeight": 1.2,
-        "letterSpacing": 0,
-        "color": "#000000",
-        "align": "left",
-        "leftPercent": 11.5,
-        "topPercent": 10.17,
-        "widthPercent": 80,
-        "heightPercent": 20
-      }
+      "text": [
+        {
+          "content": "To make a rainbow, you just have to face your shadow. Eloy's dad had taught him that.",
+          "position": "custom",
+          "font": "Overlock",
+          "fontSize": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "color": "#000000",
+          "align": "left",
+          "leftPercent": 10.5,
+          "topPercent": 8.67,
+          "widthPercent": 58.17,
+          "heightPercent": 20.5
+        },
+        {
+          "content": "He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared.",
+          "position": "custom",
+          "font": "Overlock",
+          "fontSize": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "color": "#000000",
+          "align": "right",
+          "leftPercent": 53.2,
+          "topPercent": 50.03,
+          "widthPercent": 41.13,
+          "heightPercent": 25.47
+        }
+      ]
     },
     {
       "pageNumber": 5,
@@ -105,52 +137,52 @@
     {
       "pageNumber": 7,
       "text": {
-        "content": "But space was so empty and quiet. Nobody was there.",
+        "content": "     But space was so empty and quiet. Nobody was there.",
         "position": "custom",
-        "font": "Quicksand",
-        "fontSize": 48,
+        "font": "Overlock",
+        "fontSize": 42,
         "lineHeight": 1.2,
         "letterSpacing": 0,
-        "color": "#000000",
+        "color": "#ffffff",
         "align": "left",
-        "leftPercent": 10,
-        "topPercent": 70,
-        "widthPercent": 80,
-        "heightPercent": 20
+        "leftPercent": 31.57,
+        "topPercent": 9,
+        "widthPercent": 51.8,
+        "heightPercent": 15.5
       }
     },
     {
       "pageNumber": 8,
       "text": {
-        "content": "The spaceship dove down, down, down into the ocean and became a submarine!",
+        "content": "And so he went down,\n                  deeper than he had ever gone before.",
         "position": "custom",
-        "font": "Quicksand",
-        "fontSize": 48,
+        "font": "Overlock",
+        "fontSize": 42,
         "lineHeight": 1.2,
         "letterSpacing": 0,
-        "color": "#000000",
+        "color": "#ffffff",
         "align": "left",
-        "leftPercent": 10,
-        "topPercent": 70,
-        "widthPercent": 80,
-        "heightPercent": 20
+        "leftPercent": 9.4,
+        "topPercent": 83.33,
+        "widthPercent": 82.57,
+        "heightPercent": 11.2
       }
     },
     {
       "pageNumber": 9,
       "text": {
-        "content": "Deep underwater, he found very strange creatures with very strange secrets that only he could understand.",
+        "content": "   Deep\nunderwater,\n                                          \n                            he found strange creatures\n                              with strange secrets\n                                                   that only he\n                                                       could understand.",
         "position": "custom",
-        "font": "Quicksand",
-        "fontSize": 48,
+        "font": "Overlock",
+        "fontSize": 42,
         "lineHeight": 1.2,
         "letterSpacing": 0,
-        "color": "#000000",
+        "color": "#ffffff",
         "align": "left",
-        "leftPercent": 10,
-        "topPercent": 70,
-        "widthPercent": 80,
-        "heightPercent": 20
+        "leftPercent": 10.6,
+        "topPercent": 64,
+        "widthPercent": 88.9,
+        "heightPercent": 34.3
       }
     },
     {
