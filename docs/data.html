@@ -20,6 +20,10 @@ h3{font-size:1.1rem;margin:1.2rem 0 0.5rem;color:#5a4a3f}
 .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:1.5rem}
 .page-card{background:#fff;border:1px solid #e8e4df;border-radius:10px;overflow:hidden;
   box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.spread-card{grid-column:1/-1;width:100%}
+.spread-image-container{position:relative;width:100%;overflow:hidden}
+.page-image-container{position:relative;width:100%;overflow:hidden}
+.page-card .page-image-container img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
 .page-card img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
 .page-card .card-body{padding:1rem 1.2rem}
 .page-card .page-num{font-size:0.8rem;color:#9a8a7f;text-transform:uppercase;letter-spacing:0.04em}
@@ -66,6 +70,12 @@ table.data-table td{background:#fff}
   font-size:0.95rem;line-height:1.7;white-space:pre-wrap}
 .log-entry{background:#fff;border:1px solid #e8e4df;border-radius:6px;padding:0.6rem 0.8rem;
   margin:0.4rem 0;font-size:0.82rem}
+.image-toggle-controls{position:absolute;top:0.5rem;right:0.5rem;z-index:10}
+.toggle-text-btn{background:rgba(255,255,255,0.95);border:1px solid #ddd;border-radius:6px;
+  padding:0.4rem 0.8rem;font-size:0.85rem;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  transition:all 0.2s}
+.toggle-text-btn:hover{background:#fff;box-shadow:0 3px 8px rgba(0,0,0,0.15)}
+.toggle-text-btn.active{background:#3498db;color:#fff;border-color:#3498db}
 @media(max-width:600px){
   .page-grid,.char-grid{grid-template-columns:1fr}
   .meta-grid{grid-template-columns:1fr 1fr}
@@ -122,7 +132,9 @@ table.data-table td{background:#fff}
 <tr>
 <td>1</td>
 <td>story</td>
-<td>&quot;Eloy, clean up in here and then you&#x27;ll be free,&quot; said Mama.</td>
+<td>&quot;Eloy, clean up in here
+      and then you&#x27;ll be            free,&quot; 
+                    Mama said          patiently.</td>
 <td>Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.</td>
 <td>Cozy, curious</td>
 <td>eloy</td>
@@ -131,7 +143,8 @@ table.data-table td{background:#fff}
 <tr>
 <td>2</td>
 <td>story</td>
-<td>&quot;That&#x27;s boring,&quot; he said. Maybe he didn&#x27;t want to be free.</td>
+<td>&quot;That&#x27;s boring,&quot;
+he whined. Maybe he didn&#x27;t want to be free.</td>
 <td>Whimsical watercolor: View from Eloy&#x27;s perspective looking out the window. Redwood forest in foreground, mountains in middle distance, and a glimmer of ocean on the horizon. Eloy&#x27;s silhouette visible from behind, hands on windowsill. Soft watercolor washes, magical light filtering through trees.</td>
 <td>Longing, curious</td>
 <td>eloy</td>
@@ -153,7 +166,7 @@ table.data-table td{background:#fff}
 <td>Whimsical watercolor: View from behind Eloy as he holds a garden hose with a mist nozzle, spraying fine water droplets into the air. The sun is behind him (and us), creating a beautiful rainbow arc in the mist spray in front of him. Magical light refraction, tiny jewels of water catching sunlight. Redwood trees in background. Dreamy, magical atmosphere. Soft watercolor washes showing the ephemeral beauty of the rainbow.</td>
 <td>Wonder, magical</td>
 <td>eloy</td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>5</td>
@@ -267,10 +280,10 @@ table.data-table td{background:#fff}
 <td>17</td>
 <td>spread-start</td>
 <td></td>
-<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).</td>
+<td>Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose, eyes closed, on a large rock positioned in the right third of the frame. Left third shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows seamlessly from left (nature scene) to right (Eloy).</td>
 <td>Present, harmonious</td>
 <td>eloy</td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>18</td>
@@ -279,16 +292,16 @@ table.data-table td{background:#fff}
 <td></td>
 <td></td>
 <td></td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>19</td>
 <td>spread-start</td>
 <td></td>
-<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</td>
+<td>Whimsical watercolor panoramic landscape: Eloy sitting in meditation, eyes closed, in the left third of the frame, overlooking the ocean. Right third shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</td>
 <td>Transcendent, beautiful</td>
 <td>eloy</td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>20</td>
@@ -297,16 +310,16 @@ table.data-table td{background:#fff}
 <td></td>
 <td></td>
 <td></td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>21</td>
 <td>spread-start</td>
 <td></td>
-<td>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.</td>
-<td>Universal, infinite</td>
+<td>Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose in the right third of the frame, eyes closed, floating peacefully in deep space. Simple, calm composition with dark cosmic blues and purples. Distant stars, a few planets, gentle nebulae in background. Minimal elements. He&#x27;s serene, at complete peace. The vast darkness of space surrounds him. Quiet, profound, infinite feeling.</td>
+<td>Universal, infinite, serene</td>
 <td>eloy</td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>22</td>
@@ -315,7 +328,7 @@ table.data-table td{background:#fff}
 <td></td>
 <td></td>
 <td></td>
-<td><span class='badge badge-pending'>Pending review</span></td>
+<td><span class='badge badge-pending'>Review 4 variations</span></td>
 </tr>
 <tr>
 <td>23</td>
@@ -359,8 +372,18 @@ table.data-table td{background:#fff}
     &quot;mood&quot;: &quot;Cozy, curious&quot;
   },
   &quot;text&quot;: {
-    &quot;content&quot;: &quot;\&quot;Eloy, clean up in here and then you&#x27;ll be free,\&quot; said Mama.&quot;,
-    &quot;position&quot;: &quot;bottom&quot;
+    &quot;content&quot;: &quot;\&quot;Eloy, clean up in here\n      and then you&#x27;ll be            free,\&quot; \n                    Mama said          patiently.&quot;,
+    &quot;position&quot;: &quot;custom&quot;,
+    &quot;font&quot;: &quot;Overlock&quot;,
+    &quot;fontSize&quot;: 42,
+    &quot;lineHeight&quot;: 1,
+    &quot;letterSpacing&quot;: 0,
+    &quot;color&quot;: &quot;#000000&quot;,
+    &quot;align&quot;: &quot;left&quot;,
+    &quot;leftPercent&quot;: 24.77,
+    &quot;topPercent&quot;: 59.37,
+    &quot;widthPercent&quot;: 71.9,
+    &quot;heightPercent&quot;: 23.6
   }
 }</pre>
 </details>
@@ -377,8 +400,18 @@ table.data-table td{background:#fff}
     &quot;mood&quot;: &quot;Longing, curious&quot;
   },
   &quot;text&quot;: {
-    &quot;content&quot;: &quot;\&quot;That&#x27;s boring,\&quot; he said. Maybe he didn&#x27;t want to be free.&quot;,
-    &quot;position&quot;: &quot;bottom&quot;
+    &quot;content&quot;: &quot;\&quot;That&#x27;s boring,\&quot;\nhe whined. Maybe he didn&#x27;t want to be free.&quot;,
+    &quot;position&quot;: &quot;custom&quot;,
+    &quot;font&quot;: &quot;Overlock&quot;,
+    &quot;fontSize&quot;: 42,
+    &quot;lineHeight&quot;: 1.2,
+    &quot;letterSpacing&quot;: 0,
+    &quot;color&quot;: &quot;#000000&quot;,
+    &quot;align&quot;: &quot;right&quot;,
+    &quot;leftPercent&quot;: 28.63,
+    &quot;topPercent&quot;: 29.47,
+    &quot;widthPercent&quot;: 37.7,
+    &quot;heightPercent&quot;: 17.8
   }
 }</pre>
 </details>
@@ -641,12 +674,12 @@ table.data-table td{background:#fff}
   &quot;folder&quot;: &quot;017-018-spread&quot;,
   &quot;companionPage&quot;: 18,
   &quot;scene&quot;: {
-    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).&quot;,
+    &quot;description&quot;: &quot;Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose, eyes closed, on a large rock positioned in the right third of the frame. Left third shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows seamlessly from left (nature scene) to right (Eloy).&quot;,
     &quot;characters&quot;: [
       &quot;eloy&quot;
     ],
     &quot;mood&quot;: &quot;Present, harmonious&quot;,
-    &quot;gutterNote&quot;: &quot;Eloy positioned right, forest scene flows across gutter from left&quot;
+    &quot;gutterNote&quot;: &quot;Eloy positioned in right third, forest scene flows through center zone from left&quot;
   }
 }</pre>
 </details>
@@ -665,12 +698,12 @@ table.data-table td{background:#fff}
   &quot;folder&quot;: &quot;019-020-spread&quot;,
   &quot;companionPage&quot;: 20,
   &quot;scene&quot;: {
-    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.&quot;,
+    &quot;description&quot;: &quot;Whimsical watercolor panoramic landscape: Eloy sitting in meditation, eyes closed, in the left third of the frame, overlooking the ocean. Right third shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.&quot;,
     &quot;characters&quot;: [
       &quot;eloy&quot;
     ],
     &quot;mood&quot;: &quot;Transcendent, beautiful&quot;,
-    &quot;gutterNote&quot;: &quot;Eloy on left, sunset flows across gutter to right&quot;
+    &quot;gutterNote&quot;: &quot;Eloy in left third, sunset flows through center zone to right third&quot;
   }
 }</pre>
 </details>
@@ -689,12 +722,12 @@ table.data-table td{background:#fff}
   &quot;folder&quot;: &quot;021-022-spread&quot;,
   &quot;companionPage&quot;: 22,
   &quot;scene&quot;: {
-    &quot;description&quot;: &quot;Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.&quot;,
+    &quot;description&quot;: &quot;Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose in the right third of the frame, eyes closed, floating peacefully in deep space. Simple, calm composition with dark cosmic blues and purples. Distant stars, a few planets, gentle nebulae in background. Minimal elements. He&#x27;s serene, at complete peace. The vast darkness of space surrounds him. Quiet, profound, infinite feeling.&quot;,
     &quot;characters&quot;: [
       &quot;eloy&quot;
     ],
-    &quot;mood&quot;: &quot;Universal, infinite&quot;,
-    &quot;gutterNote&quot;: &quot;Eloy centered across gutter, cosmos spreads both pages&quot;
+    &quot;mood&quot;: &quot;Universal, infinite, serene&quot;,
+    &quot;gutterNote&quot;: &quot;Eloy in right third, dark space flows through center zone from left third&quot;
   }
 }</pre>
 </details>
@@ -775,7 +808,94 @@ table.data-table td{background:#fff}
 </div></div>
 </div>
 <h2 id='logs'>Generation Logs</h2>
-<p style='color:#9a8a7f'>No generation logs found.</p>
+<details><summary>Page 3 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (70.67s) &mdash; 2026-02-11T18:13:42.936549+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v1</strong> success (48.03s) &mdash; 2026-02-11T19:46:16.141948+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 4 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (58.47s) &mdash; 2026-02-11T18:14:46.210273+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v1</strong> success (44.61s) &mdash; 2026-02-11T19:47:05.098153+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v2</strong> success (43.72s) &mdash; 2026-02-11T20:23:31.300367+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v3</strong> success (40.97s) &mdash; 2026-02-11T20:29:43.073601+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 5 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (66.19s) &mdash; 2026-02-11T18:15:56.223886+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v1</strong> success (43.97s) &mdash; 2026-02-11T19:47:52.330001+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 11 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (59.95s) &mdash; 2026-02-11T18:16:59.890561+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v1</strong> success (53.77s) &mdash; 2026-02-11T19:48:49.109815+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 12 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (69.33s) &mdash; 2026-02-11T18:18:15.960671+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+<div class='log-entry'>
+<strong>v1</strong> success (43.22s) &mdash; 2026-02-11T19:49:35.654437+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 16 generation log</summary>
+<div class='log-entry'>
+<strong>v1</strong> success (75.55s) &mdash; 2026-02-11T19:50:54.961192+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 17 generation log</summary>
+<div class='log-entry'>
+<strong>v3</strong> success (64.86s) &mdash; 2026-02-11T18:16:46.675068+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 18 generation log</summary>
+<div class='log-entry'>
+<strong>v3</strong> success (64.86s) &mdash; 2026-02-11T18:16:46.675068+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 19 generation log</summary>
+<div class='log-entry'>
+<strong>v3</strong> success (84.17s) &mdash; 2026-02-11T18:18:26.211719+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
+<details><summary>Page 20 generation log</summary>
+<div class='log-entry'>
+<strong>v3</strong> success (84.17s) &mdash; 2026-02-11T18:18:26.211719+00:00
+<br>Model sheets: characters/eloy/approved_model_sheet.png
+</div>
+</details>
 <h2 id='palette'>Color Palette</h2>
 <div style='display:flex;gap:1rem;flex-wrap:wrap'>
 <div style='text-align:center'><div style='width:80px;height:80px;background:#FFE5B4;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#FFE5B4</div></div>
@@ -783,5 +903,5 @@ table.data-table td{background:#fff}
 <div style='text-align:center'><div style='width:80px;height:80px;background:#DDA0DD;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#DDA0DD</div></div>
 <div style='text-align:center'><div style='width:80px;height:80px;background:#98FB98;border-radius:8px;border:1px solid #ddd'></div><div style='font-size:0.82rem;margin-top:0.3rem;color:#6b5b4f'>#98FB98</div></div>
 </div>
-<footer>Generated 2026-02-11 06:40 UTC</footer>
+<footer>Generated 2026-02-12 22:29 UTC</footer>
 </div></body></html>

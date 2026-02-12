@@ -20,6 +20,8 @@ h3{font-size:1.1rem;margin:1.2rem 0 0.5rem;color:#5a4a3f}
 .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:1.5rem}
 .page-card{background:#fff;border:1px solid #e8e4df;border-radius:10px;overflow:hidden;
   box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.spread-card{grid-column:1/-1;width:100%}
+.spread-image-container{position:relative;width:100%;overflow:hidden}
 .page-image-container{position:relative;width:100%;overflow:hidden}
 .page-card .page-image-container img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
 .page-card img{width:100%;height:auto;display:block;border-bottom:1px solid #eee}
@@ -68,6 +70,12 @@ table.data-table td{background:#fff}
   font-size:0.95rem;line-height:1.7;white-space:pre-wrap}
 .log-entry{background:#fff;border:1px solid #e8e4df;border-radius:6px;padding:0.6rem 0.8rem;
   margin:0.4rem 0;font-size:0.82rem}
+.image-toggle-controls{position:absolute;top:0.5rem;right:0.5rem;z-index:10}
+.toggle-text-btn{background:rgba(255,255,255,0.95);border:1px solid #ddd;border-radius:6px;
+  padding:0.4rem 0.8rem;font-size:0.85rem;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  transition:all 0.2s}
+.toggle-text-btn:hover{background:#fff;box-shadow:0 3px 8px rgba(0,0,0,0.15)}
+.toggle-text-btn.active{background:#3498db;color:#fff;border-color:#3498db}
 @media(max-width:600px){
   .page-grid,.char-grid{grid-template-columns:1fr}
   .meta-grid{grid-template-columns:1fr 1fr}
@@ -76,7 +84,7 @@ table.data-table td{background:#fff}
 </style>
 <link rel='stylesheet' href='css/version-viewer.css'>
 </head>
-<body data-available-fonts='[{&quot;file&quot;: &quot;Nunito-Regular.ttf&quot;, &quot;name&quot;: &quot;Nunito Regular&quot;}, {&quot;file&quot;: &quot;Quicksand-Medium.ttf&quot;, &quot;name&quot;: &quot;Quicksand Medium&quot;}, {&quot;file&quot;: &quot;Quicksand.ttf&quot;, &quot;name&quot;: &quot;Quicksand&quot;}, {&quot;file&quot;: &quot;Comfortaa-Regular.ttf&quot;, &quot;name&quot;: &quot;Comfortaa Regular&quot;}, {&quot;file&quot;: &quot;OpenSans-Regular.ttf&quot;, &quot;name&quot;: &quot;OpenSans Regular&quot;}]'>
+<body>
 <nav class="sticky-nav">
   <a href="index.html">Book Preview</a>
   <a href="data.html">Project Data</a>
@@ -93,15 +101,38 @@ table.data-table td{background:#fff}
 <div class='meta-item'><div class='meta-label'>Phase</div><div class='meta-value'>cover-generation</div></div>
 <div class='meta-item'><div class='meta-label'>Model</div><div class='meta-value'>nano-banana-pro</div></div>
 </div>
+<h2 id='characters'>Characters</h2>
+<div class='char-grid'>
+<div class='char-card'>
+<img src='images/characters/eloy-primary.jpg' alt='Eloy' loading='lazy'>
+<div class='card-body'>
+<div class='char-name'>Eloy</div>
+<div class='char-role'>protagonist</div>
+<p class='scene-desc'>A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants</p>
+<p class='scene-desc'>age: 4, hairColor: dark brown, hairStyle: wavy, slightly tousled, eyeColor: green, skinTone: light tan, signature: pink t-shirt and colorful patterned pants</p>
+<details><summary>Prompt snippet</summary><pre>4-year-old boy Eloy with dark wavy hair, green eyes, pink t-shirt, and patterned pants</pre></details>
+<details><summary>Other views</summary>
+<img src='images/characters/eloy-front.jpg' alt='characters/eloy-front' loading='lazy' style='max-width:300px;margin:0.5rem 0.5rem 0 0'>
+</details>
+</div></div>
+</div>
 <h2 id='pages'>Pages</h2>
 <div class='page-grid'>
-<div class='page-card' data-page-number='1' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;Eloy, clean up in here and then you&#x27;ll be free,\&quot; said Mama.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='1' data-page-type='story' data-versions='[1, 2, 3]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-01.jpg' alt='Page 1' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='1' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-01.jpg' alt='Page 1' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-01-text.jpg' alt='Page 1 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 1</div>
-<p class='page-text'>"&quot;Eloy, clean up in here and then you&#x27;ll be free,&quot; said Mama."</p>
+<p class='page-text'>"&quot;Eloy, clean up in here
+      and then you&#x27;ll be            free,&quot; 
+                    Mama said          patiently."</p>
 <p class='scene-desc'>Whimsical watercolor: 4-year-old boy Eloy in his room with toys scattered around. Large window showing towering redwood forest outside. Warm, inviting atmosphere. Soft edges, dreamy quality. View from slightly above, showing the room and glimpse of mountains beyond the forest.</p>
 <span class='mood-badge'>Cozy, curious</span>
 <span class='mood-badge'>eloy</span>
@@ -134,13 +165,14 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='2' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;That&#x27;s boring,\&quot; he said. Maybe he didn&#x27;t want to be free.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='2' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-02.jpg' alt='Page 2' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-02.jpg' alt='Page 2' class='page-img plain-img' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 2</div>
-<p class='page-text'>"&quot;That&#x27;s boring,&quot; he said. Maybe he didn&#x27;t want to be free."</p>
+<p class='page-text'>"&quot;That&#x27;s boring,&quot;
+he whined. Maybe he didn&#x27;t want to be free."</p>
 <p class='scene-desc'>Whimsical watercolor: View from Eloy&#x27;s perspective looking out the window. Redwood forest in foreground, mountains in middle distance, and a glimmer of ocean on the horizon. Eloy&#x27;s silhouette visible from behind, hands on windowsill. Soft watercolor washes, magical light filtering through trees.</p>
 <span class='mood-badge'>Longing, curious</span>
 <span class='mood-badge'>eloy</span>
@@ -173,9 +205,9 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='3' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He found a screwdriver and started taking things apart. \&quot;I just want to see what kind of batteries my garbage truck has\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='3' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-03.jpg' alt='Page 3' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-03.jpg' alt='Page 3' class='page-img plain-img' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 3</div>
@@ -184,11 +216,11 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <span class='mood-badge'>Curious, focused</span>
 <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 3
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 3
 Art style: Whimsical watercolor with soft edges
 Overall mood: Warm, dreamy, magical
 
-SCENE: Whimsical watercolor: Eloy sitting on floor surrounded by disassembled toy pieces - wheels, springs, plastic parts scattered everywhere. He holds a screwdriver, focused and curious. A toy garbage truck sits in front of him, partially taken apart with batteries visible. Other broken toys around - robot, toy parts. Soft edges, warm curious mood.
+SCENE: Whimsical watercolor: Eloy sitting on floor surrounded by disassembled toy pieces - wheels, springs, plastic parts scattered everywhere. He holds a screwdriver and is actively using the screwdriver on the trash truck, with a concentrated face, looking at what he is doing. IMPORTANT: His face must show concentration and he must be looking directly at what he is doing with the screwdriver. A toy garbage truck sits in front of him, partially taken apart with batteries visible. He is focused intently on his work. Other broken toys around - robot, toy parts. Soft edges, warm curious mood.
 Setting: None
 Scene mood: Curious, focused
 
@@ -212,9 +244,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='4' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;To make a rainbow, you just have to face your shadow. Eloy&#x27;s dad had taught him that. He grabbed the hose and swept it across the sky, and millions of tiny jewels danced and then disappeared.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='4' data-page-type='story' data-versions='[1, 2, 3]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-04.jpg' alt='Page 4' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='4' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-04.jpg' alt='Page 4' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-04-text.jpg' alt='Page 4 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 4</div>
@@ -222,38 +260,18 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <p class='scene-desc'>Whimsical watercolor: View from behind Eloy as he holds a garden hose with a mist nozzle, spraying fine water droplets into the air. The sun is behind him (and us), creating a beautiful rainbow arc in the mist spray in front of him. Magical light refraction, tiny jewels of water catching sunlight. Redwood trees in background. Dreamy, magical atmosphere. Soft watercolor washes showing the ephemeral beauty of the rainbow.</p>
 <span class='mood-badge'>Wonder, magical</span>
 <span class='mood-badge'>eloy</span>
- <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 4
-Art style: Whimsical watercolor with soft edges
-Overall mood: Warm, dreamy, magical
-
-SCENE: Whimsical watercolor: View from behind Eloy as he holds a garden hose with a mist nozzle, spraying fine water droplets into the air. The sun is behind him (and us), creating a beautiful rainbow arc in the mist spray in front of him. Magical light refraction, tiny jewels of water catching sunlight. Redwood trees in background. Dreamy, magical atmosphere. Soft watercolor washes showing the ephemeral beauty of the rainbow.
-Setting: None
-Scene mood: Wonder, magical
-
-CHARACTERS IN SCENE:
-  - Eloy: A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants
-    4-year-old boy Eloy with dark wavy hair, green eyes, pink t-shirt, and patterned pants
-
-COMPOSITION REQUIREMENTS:
-- Full bleed illustration (no borders/margins)
-- Square format (1:1 aspect ratio)
-- Keep important elements away from edges (safe zone)
-- Clear focal point
-- Balanced composition
-- Space for text overlay if needed
-
-TEXT REQUIREMENTS:
-- **NO TEXT, WORDS, LETTERS, OR TYPOGRAPHY** in the image
-- This is an illustration only - text will be added separately in post-production
-- Do not include any readable text, signs, labels, captions, or written words
-- Pure visual artwork only - no typography of any kind
-
-COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
+ <span class='badge badge-pending'>Review 4 variations</span>
+<details><summary>Generation prompt</summary><pre>REFERENCE THE EXACT SCENE FROM v1: A 4-year-old boy named Eloy stands with his back to the camera/viewer, holding a garden hose with a mist nozzle spraying water. CRITICAL LIGHTING SETUP: The sun is positioned BEHIND Eloy (at his back, backlighting him). Because the sun is behind him, his shadow MUST be cast FORWARD/IN FRONT of him on the ground toward the camera/viewer - NOT behind him. RAINBOW COUNT - ABSOLUTELY CRITICAL: There is EXACTLY ONE rainbow - a single rainbow arc in the water spray. NOT two rainbows, NOT a double rainbow, NOT multiple rainbows - just ONE single rainbow arc. Shadow physics: Sun at Eloy&#x27;s back = shadow projects forward toward viewer. Magical forest setting with redwood trees. Whimsical watercolor style, soft dreamy quality.</pre></details>
 </div></div>
-<div class='page-card' data-page-number='5' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He jumped into his favorite big machine and started tearing up the earth. Words melted into rumbling sounds and he sang repetitive songs of screeches and beeps.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='5' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-05.jpg' alt='Page 5' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='5' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-05.jpg' alt='Page 5' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-05-text.jpg' alt='Page 5 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 5</div>
@@ -262,13 +280,13 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <span class='mood-badge'>Worried, overwhelmed</span>
 <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 5
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 5
 Art style: Whimsical watercolor with soft edges
 Overall mood: Warm, dreamy, magical
 
-SCENE: Whimsical watercolor: Eloy sitting in the seat of a yellow backhoe construction vehicle, pulling levers. Piles of dirt and rocks scattered around, garden torn up. Redwood forest background. His face shows worry as he realizes the chaos. Soft watercolor rendering with gentle yellows and earth tones.
+SCENE: Whimsical watercolor: Eloy sitting in the seat of a yellow backhoe construction vehicle, pulling levers. Piles of dirt and rocks scattered around, garden torn up. Redwood forest background. IMPORTANT: He is singing and in the zone - his face shows he&#x27;s happy, engaged, and focused. NOT worried or overwhelmed, but joyful, musical expression, completely immersed in his play. His expression must be happy and engaged. Soft watercolor rendering with gentle yellows and earth tones.
 Setting: None
-Scene mood: Worried, overwhelmed
+Scene mood: Joyful, in the zone
 
 CHARACTERS IN SCENE:
   - Eloy: A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants
@@ -290,9 +308,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='6' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;In a rocket ship he built all by himself, which was just the right size and just the right shape, he blasted up and away to see how far he could get.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='6' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-06.jpg' alt='Page 6' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='6' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-06.jpg' alt='Page 6' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-06-text.jpg' alt='Page 6 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 6</div>
@@ -329,9 +353,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='7' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;But space was so empty and quiet. Nobody was there.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='7' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-07.jpg' alt='Page 7' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='7' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-07.jpg' alt='Page 7' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-07-text.jpg' alt='Page 7 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 7</div>
@@ -368,9 +398,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='8' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;The spaceship dove down, down, down into the ocean and became a submarine!&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='8' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-08.jpg' alt='Page 8' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='8' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-08.jpg' alt='Page 8' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-08-text.jpg' alt='Page 8 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 8</div>
@@ -407,9 +443,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='9' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Deep underwater, he found very strange creatures with very strange secrets that only he could understand.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='9' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-09.jpg' alt='Page 9' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='9' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-09.jpg' alt='Page 9' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-09-text.jpg' alt='Page 9 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 9</div>
@@ -446,9 +488,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='10' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;When he emerged from the deep, his vehicle grew wheels, and the very strange creatures seemed to say goodbye in their very strange way.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='10' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-10.jpg' alt='Page 10' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='10' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-10.jpg' alt='Page 10' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-10-text.jpg' alt='Page 10 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 10</div>
@@ -485,9 +533,9 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='11' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;The more he drove, the bigger it grew. Soon he could barely hold the wheel. He remembered something his grandmother had said: \&quot;When you find yourself becoming too strong, that&#x27;s when you must be most gentle.\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='11' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-11.jpg' alt='Page 11' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-11.jpg' alt='Page 11' class='page-img plain-img' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 11</div>
@@ -496,11 +544,11 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <span class='mood-badge'>Surreal, awestruck</span>
 <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 11
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 11
 Art style: Whimsical watercolor with soft edges
 Overall mood: Warm, dreamy, magical
 
-SCENE: Whimsical watercolor: Enormous truck wheels rolling across the curved surface of planet Earth, as if Earth were a road. Continents and oceans visible below. Eloy tiny in the driver&#x27;s seat of the impossibly large truck. Space visible around the Earth&#x27;s curve. Surreal, whimsical composition. Soft cosmic colors.
+SCENE: Whimsical watercolor: Enormous truck wheels rolling across the curved surface of planet Earth. Continents and oceans visible below. Eloy tiny in the driver&#x27;s seat of the impossibly large truck. Space visible around the Earth&#x27;s curve. Surreal, whimsical composition. Soft cosmic colors. NOTE: Do not mention or show any road.
 Setting: None
 Scene mood: Surreal, awestruck
 
@@ -524,9 +572,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='12' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Then Eloy saw something that took his breath away\u2014the glowing moon, bright and beautiful.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='12' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-12.jpg' alt='Page 12' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='12' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-12.jpg' alt='Page 12' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-12-text.jpg' alt='Page 12 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 12</div>
@@ -535,11 +589,11 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <span class='mood-badge'>Wonder, captivated</span>
 <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 12
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 12
 Art style: Whimsical watercolor with soft edges
 Overall mood: Warm, dreamy, magical
 
-SCENE: Whimsical watercolor: Close-up of Eloy&#x27;s face, eyes wide with wonder, gazing up at a magnificent full moon. Moon takes up much of the composition, glowing soft silver-white. Stars scattered around. Eloy&#x27;s expression shows pure awe. Soft, luminous watercolor washes. Magic in the air.
+SCENE: Whimsical watercolor: SIDE VIEW composition. CRITICAL positioning: Eloy on the lower left in side profile, looking up at a magnificent full moon positioned above on the right. He MUST be looking at the moon - his gaze directed upward toward it. His profile showing pure awe and wonder. Moon glows soft silver-white in the upper right. Stars scattered around. Soft, luminous watercolor washes. Magic in the air. Composition: side view with Eloy lower left, moon above right.
 Setting: None
 Scene mood: Wonder, captivated
 
@@ -563,9 +617,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='13' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;He floated up, up, up toward the moon. And there, perched on its edge, was a wise old owl.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='13' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-13.jpg' alt='Page 13' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='13' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-13.jpg' alt='Page 13' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-13-text.jpg' alt='Page 13 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 13</div>
@@ -602,9 +662,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='14' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;What&#x27;s out there\u2026\&quot; the owl said slowly&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='14' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-14.jpg' alt='Page 14' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='14' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-14.jpg' alt='Page 14' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-14-text.jpg' alt='Page 14 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 14</div>
@@ -641,9 +707,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='15' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;\u2026is also in here.\&quot; The owl gently touched the center of Eloy&#x27;s chest. \&quot;What&#x27;s not in here, doesn&#x27;t exist.\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='15' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-15.jpg' alt='Page 15' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='15' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-15.jpg' alt='Page 15' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-15-text.jpg' alt='Page 15 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 15</div>
@@ -680,9 +752,9 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='16' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;Eloy closed his eyes. And suddenly, he discovered a whole world inside himself.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='16' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-16.jpg' alt='Page 16' loading='lazy' data-original-width='4096'>
+<img src='images/pages/page-16.jpg' alt='Page 16' class='page-img plain-img' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 16</div>
@@ -691,11 +763,11 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <span class='mood-badge'>Peaceful, awakening</span>
 <span class='mood-badge'>eloy</span>
  <span class='badge badge-pending'>Pending review</span>
-<details><summary>Generation prompt</summary><pre>CHILDREN&#x27;S BOOK ILLUSTRATION - PAGE 16
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 16
 Art style: Whimsical watercolor with soft edges
 Overall mood: Warm, dreamy, magical
 
-SCENE: Whimsical watercolor: Close-up of Eloy&#x27;s peaceful face, eyes gently closed, slight smile. Around his head, soft glowing auras and subtle light emanations suggesting an inner universe awakening. Dreamy, abstract watercolor washes of warm golds, soft pinks, gentle purples. Magical, transcendent feeling.
+SCENE: Whimsical watercolor: Close-up of Eloy&#x27;s peaceful face. CHARACTER DESCRIPTION - MUST MATCH EXACTLY: 4-year-old boy with dark wavy hair, warm green eyes (gently closed in this scene), round cheeks, and a gentle smile. His facial features must be consistent with the established Eloy character: soft round face, warm complexion, dark wavy/slightly curly hair, expressive warm green eyes, gentle features of a 4-year-old. CRITICAL: This must be the same character as in all other pages - use established Eloy appearance. Around his head, soft glowing auras and subtle light emanations suggesting an inner universe awakening. Dreamy, abstract watercolor washes of warm golds, soft pinks, gentle purples. Magical, transcendent feeling.
 Setting: None
 Scene mood: Peaceful, awakening
 
@@ -719,48 +791,102 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='spread-card' data-pages='17-18' data-page-type='spread'>
-<div class='spread-images'>
-<img src='images/pages/page-17.jpg' alt='Pages 17-18 (Left)' loading='lazy' data-original-width='4096'>
-<img src='images/pages/page-18.jpg' alt='Pages 17-18 (Right)' loading='lazy' data-original-width='4096'>
+<div class='page-card spread-card' data-page-numbers='17-18' data-page-type='spread' data-versions='[1, 2, 3, 4]' data-current-version='1'>
+<div class='spread-image-container'>
+<img src='images/pages/page-17.jpg' alt='Pages 17-18' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Pages 17-18</div>
-<p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation pose on a large rock positioned on the RIGHT side. LEFT side shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows from left (nature scene) to right (Eloy).</p>
+<p class='scene-desc'>Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose, eyes closed, on a large rock positioned in the right third of the frame. Left third shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows seamlessly from left (nature scene) to right (Eloy).</p>
 <span class='mood-badge'>Present, harmonious</span>
- <span class='mood-badge'>eloy</span>
- <span class='badge badge-pending'>Pending review</span>
+<span class='mood-badge'>eloy</span>
+ <span class='badge badge-pending'>Review 4 variations</span>
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 17
+Art style: Whimsical watercolor with soft edges
+Overall mood: Warm, dreamy, magical
 
+SCENE: Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose, eyes closed, on a large rock positioned in the right third of the frame. Left third shows redwood forest scene with a gentle creek flowing, ferns, dappled sunlight through trees, deer in distance. Everything glowing with subtle inner light. Birds, butterflies, peaceful forest magic. Composition flows seamlessly from left (nature scene) to right (Eloy).
+Setting: None
+Scene mood: Present, harmonious
+
+CHARACTERS IN SCENE:
+  - Eloy: A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants
+    4-year-old boy Eloy with dark wavy hair, green eyes, pink t-shirt, and patterned pants
+
+COMPOSITION REQUIREMENTS:
+- Full bleed illustration (no borders/margins)
+- Square format (1:1 aspect ratio)
+- Keep important elements away from edges (safe zone)
+- Clear focal point
+- Balanced composition
+- Space for text overlay if needed
+
+TEXT REQUIREMENTS:
+- **NO TEXT, WORDS, LETTERS, OR TYPOGRAPHY** in the image
+- This is an illustration only - text will be added separately in post-production
+- Do not include any readable text, signs, labels, captions, or written words
+- Pure visual artwork only - no typography of any kind
+
+COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='spread-card' data-pages='19-20' data-page-type='spread'>
-<div class='spread-images'>
-<img src='images/pages/page-19.jpg' alt='Pages 19-20 (Left)' loading='lazy' data-original-width='4096'>
-<img src='images/pages/page-20.jpg' alt='Pages 19-20 (Right)' loading='lazy' data-original-width='4096'>
+<div class='page-card spread-card' data-page-numbers='19-20' data-page-type='spread' data-versions='[1, 2, 3, 4]' data-current-version='1'>
+<div class='spread-image-container'>
+<img src='images/pages/page-19.jpg' alt='Pages 19-20' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Pages 19-20</div>
-<p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy sitting in meditation on the LEFT side, overlooking the ocean. RIGHT side shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</p>
+<p class='scene-desc'>Whimsical watercolor panoramic landscape: Eloy sitting in meditation, eyes closed, in the left third of the frame, overlooking the ocean. Right third shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.</p>
 <span class='mood-badge'>Transcendent, beautiful</span>
- <span class='mood-badge'>eloy</span>
- <span class='badge badge-pending'>Pending review</span>
+<span class='mood-badge'>eloy</span>
+ <span class='badge badge-pending'>Review 4 variations</span>
+<details><summary>Generation prompt</summary><pre>ILLUSTRATION - Scene 19
+Art style: Whimsical watercolor with soft edges
+Overall mood: Warm, dreamy, magical
 
+SCENE: Whimsical watercolor panoramic landscape: Eloy sitting in meditation, eyes closed, in the left third of the frame, overlooking the ocean. Right third shows magnificent sunset over the Pacific Ocean - oranges, pinks, purples reflecting on water. Waves gently rolling. Seabirds silhouetted. The sunset and Eloy&#x27;s inner peace mirror each other. Warm, glowing watercolors. Transcendent beauty.
+Setting: None
+Scene mood: Transcendent, beautiful
+
+CHARACTERS IN SCENE:
+  - Eloy: A 4-year-old boy with dark wavy hair, warm green eyes, wearing a pink t-shirt and patterned pants
+    4-year-old boy Eloy with dark wavy hair, green eyes, pink t-shirt, and patterned pants
+
+COMPOSITION REQUIREMENTS:
+- Full bleed illustration (no borders/margins)
+- Square format (1:1 aspect ratio)
+- Keep important elements away from edges (safe zone)
+- Clear focal point
+- Balanced composition
+- Space for text overlay if needed
+
+TEXT REQUIREMENTS:
+- **NO TEXT, WORDS, LETTERS, OR TYPOGRAPHY** in the image
+- This is an illustration only - text will be added separately in post-production
+- Do not include any readable text, signs, labels, captions, or written words
+- Pure visual artwork only - no typography of any kind
+
+COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='spread-card' data-pages='21-22' data-page-type='spread'>
-<div class='spread-images'>
-<img src='images/pages/page-21.jpg' alt='Pages 21-22 (Left)' loading='lazy' data-original-width='4096'>
-<img src='images/pages/page-22.jpg' alt='Pages 21-22 (Right)' loading='lazy' data-original-width='4096'>
+<div class='page-card spread-card' data-page-numbers='21-22' data-page-type='spread' data-versions='[1, 2, 3, 4]' data-current-version='1'>
+<div class='spread-image-container'>
+<img src='images/pages/page-21.jpg' alt='Pages 21-22' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Pages 21-22</div>
-<p class='scene-desc'>Whimsical watercolor DOUBLE-PAGE SPREAD: Eloy in a spacesuit, sitting in meditation pose, floating peacefully in space spanning both pages CENTER. Sun, planets, stars, nebulae, galaxies spread across background on both pages. He&#x27;s serene, completely at peace. The cosmos surrounds him but he&#x27;s connected to all of it through his inner stillness. Deep blues, purples, cosmic golds. Profound, universal feeling.</p>
-<span class='mood-badge'>Universal, infinite</span>
- <span class='mood-badge'>eloy</span>
- <span class='badge badge-pending'>Pending review</span>
-
+<p class='scene-desc'>Whimsical watercolor panoramic landscape: Eloy sitting in meditation pose in the right third of the frame, eyes closed, floating peacefully in deep space. Simple, calm composition with dark cosmic blues and purples. Distant stars, a few planets, gentle nebulae in background. Minimal elements. He&#x27;s serene, at complete peace. The vast darkness of space surrounds him. Quiet, profound, infinite feeling.</p>
+<span class='mood-badge'>Universal, infinite, serene</span>
+<span class='mood-badge'>eloy</span>
+ <span class='badge badge-pending'>Review 4 variations</span>
 </div></div>
-<div class='page-card' data-page-number='23' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;Eloy? Eloy, where are you?\&quot; Eloy heard the sweet sound of his mama calling from far far away.&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='23' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-23.jpg' alt='Page 23' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='23' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-23.jpg' alt='Page 23' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-23-text.jpg' alt='Page 23 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 23</div>
@@ -797,9 +923,15 @@ TEXT REQUIREMENTS:
 
 COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 </div></div>
-<div class='page-card' data-page-number='24' data-page-type='story' data-text-spec='{&quot;content&quot;: &quot;\&quot;I&#x27;m right here, mama\&quot;&quot;, &quot;position&quot;: &quot;bottom&quot;}'>
+<div class='page-card' data-page-number='24' data-page-type='story' data-versions='[1]' data-current-version='1'>
 <div class='page-image-container'>
-<img src='images/pages/page-24.jpg' alt='Page 24' loading='lazy' data-original-width='4096'>
+<div class='image-toggle-controls'>
+<button class='toggle-text-btn' data-page='24' onclick='toggleTextOverlay(this)'>
+👁️ Toggle Text
+</button>
+</div>
+<img src='images/pages/page-24.jpg' alt='Page 24' class='page-img plain-img' loading='lazy'>
+<img src='images/pages/page-24-text.jpg' alt='Page 24 with text' class='page-img text-img' style='display:none' loading='lazy'>
 </div>
 <div class='card-body'>
 <div class='page-num'>Page 24</div>
@@ -851,8 +983,30 @@ COLOR PALETTE: #FFE5B4, #87CEEB, #DDA0DD, #98FB98</pre></details>
 <div class='progress-item'><div class='progress-check' style='color:#bbb'>&#8226;</div><div>Cover</div></div>
 </div>
 <p style='margin-top:1rem;color:#6b5b4f'>24/25 pages generated</p>
-<footer>Generated 2026-02-11 16:35 UTC &middot; whats-not-in-here</footer>
+<footer>Generated 2026-02-12 22:29 UTC &middot; whats-not-in-here</footer>
 </div>
-<script src='js/version-metadata.js'></script>
+<script>
+function toggleTextOverlay(btn) {
+    const container = btn.closest('.page-image-container');
+    const plainImg = container.querySelector('.plain-img');
+    const textImg = container.querySelector('.text-img');
+    
+    if (plainImg && textImg) {
+        const isShowingText = textImg.style.display !== 'none';
+        
+        if (isShowingText) {
+            // Show plain
+            plainImg.style.display = 'block';
+            textImg.style.display = 'none';
+            btn.classList.remove('active');
+        } else {
+            // Show text
+            plainImg.style.display = 'none';
+            textImg.style.display = 'block';
+            btn.classList.add('active');
+        }
+    }
+}
+</script>
 <script type='module' src='js/main.js'></script>
 </body></html>
