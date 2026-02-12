@@ -398,10 +398,16 @@ const TextEditor = (function() {
         // The wrapper dimensions are what matter for % positioning
         const wrapperWidth = imageWrapper.offsetWidth;
         const wrapperHeight = imageWrapper.offsetHeight;
+        
+        // Account for CSS scale transform on .page-canvas
+        // The canvas is scaled to 50%, so mouse movements need to be multiplied by 2
+        // to match the unscaled coordinate space (1200px)
+        const SCALE_FACTOR = 0.5;
 
         if (isDragging) {
-            const deltaX = e.clientX - dragStartX;
-            const deltaY = e.clientY - dragStartY;
+            // Compensate for scale: divide by scale factor (or multiply by 1/0.5 = 2)
+            const deltaX = (e.clientX - dragStartX) / SCALE_FACTOR;
+            const deltaY = (e.clientY - dragStartY) / SCALE_FACTOR;
 
             // Get current position in pixels
             const currentLeft = parseFloat(currentOverlay.style.left) || 0;
@@ -430,8 +436,9 @@ const TextEditor = (function() {
             // Update data
             updateOverlayDataFromElement(currentOverlay);
         } else if (isResizing) {
-            const deltaX = e.clientX - dragStartX;
-            const deltaY = e.clientY - dragStartY;
+            // Compensate for scale: divide by scale factor (or multiply by 1/0.5 = 2)
+            const deltaX = (e.clientX - dragStartX) / SCALE_FACTOR;
+            const deltaY = (e.clientY - dragStartY) / SCALE_FACTOR;
 
             let newLeft = parseFloat(currentOverlay.style.left);
             let newTop = parseFloat(currentOverlay.style.top);
