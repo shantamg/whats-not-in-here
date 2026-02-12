@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Overlay Tester</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&family=Lato:wght@400;700&family=Open+Sans:wght@400;600;700&family=Merriweather:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>📝 Text Overlay Tester</h1>
+                    <p>Visual editor for testing text overlays on book pages</p>
+                </div>
+                <div class="header-right">
+                    <a href="../../index.html" class="btn-link">← Back to Preview</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel: Pages Gallery -->
+            <div class="canvas-panel">
+                <div class="panel-header">
+                    <h2>All Pages - Text Overlay Editor</h2>
+                    <div class="canvas-controls">
+                        <button id="exportAllBtn">💾 Export All Pages</button>
+                        <button id="clearAllTextBtn">🗑️ Clear All Text</button>
+                    </div>
+                </div>
+                
+                <div id="loadingMessage" class="loading-message">
+                    <p>📚 Loading published pages...</p>
+                </div>
+                
+                <div id="pagesGallery" class="pages-gallery" style="display: none;">
+                    <div class="info-message" style="margin-bottom: 2rem;">
+                        <strong>ℹ️ Display Size:</strong> Images are shown at 50% scale (600px visual) for easy viewing, but text positioning uses a fixed 1200px coordinate space—matching the final Playwright render perfectly. What you position here will render identically in the final output.
+                    </div>
+                    <!-- Pages will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Right Panel: Properties & Export -->
+            <div class="properties-panel">
+                <!-- Text Properties -->
+                <div class="panel-section">
+                    <h2>Text Properties</h2>
+                    <div id="noTextMessage" class="no-selection">
+                        <p>Click ➕ Add Text on any page to create an overlay, or click an existing text to edit it</p>
+                    </div>
+                    <div id="textProperties" style="display: none;">
+                        <div id="pageContext" class="page-context">
+                            <strong>Editing:</strong> <span id="pageContextText">Page 1 - Text 1</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="textContent">Content:</label>
+                            <textarea id="textContent" rows="4" placeholder="Enter text here..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fontFamily">Font (Google Fonts):</label>
+                                <input type="text" id="fontFamily" list="fontSuggestions" value="Quicksand" placeholder="Type any Google Font name...">
+                                <datalist id="fontSuggestions">
+                                    <option value="Quicksand">
+                                    <option value="Comfortaa">
+                                    <option value="Nunito">
+                                    <option value="Lato">
+                                    <option value="Open Sans">
+                                    <option value="Merriweather">
+                                    <option value="Lora">
+                                    <option value="Roboto">
+                                    <option value="Roboto Slab">
+                                    <option value="Playfair Display">
+                                    <option value="Poppins">
+                                    <option value="Montserrat">
+                                    <option value="Patrick Hand">
+                                    <option value="Caveat">
+                                    <option value="Pacifico">
+                                    <option value="Dancing Script">
+                                    <option value="Comic Neue">
+                                    <option value="Bangers">
+                                    <option value="Fredoka One">
+                                    <option value="Baloo 2">
+                                </datalist>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fontSize">Size (px):</label>
+                                <input type="number" id="fontSize" value="240" min="8" max="500">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lineHeight">Line Height:</label>
+                                <input type="number" id="lineHeight" value="1.2" min="0.5" max="3" step="0.1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="letterSpacing">Letter Spacing (px):</label>
+                                <input type="number" id="letterSpacing" value="0" min="-5" max="20" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fontColor">Color:</label>
+                                <input type="color" id="fontColor" value="#000000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="textAlign">Align:</label>
+                                <select id="textAlign">
+                                    <option value="left">Left</option>
+                                    <option value="center">Center</option>
+                                    <option value="right">Right</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="posX">Position X (%):</label>
+                                <input type="number" id="posX" value="10" min="0" max="100" step="0.1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="posY">Position Y (%):</label>
+                                <input type="number" id="posY" value="70" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="boxWidth">Width (%):</label>
+                                <input type="number" id="boxWidth" value="80" min="1" max="100" step="0.1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="boxHeight">Height (%):</label>
+                                <input type="number" id="boxHeight" value="20" min="1" max="100" step="0.1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Section -->
+                <div class="panel-section">
+                    <h2>Export</h2>
+                    <div id="exportSection">
+                        <p class="info-message">
+                            💡 Click "Export All Pages" at the top to generate text settings for all pages with text overlays.
+                        </p>
+                        
+                        <div id="jsonOutput" class="json-output" style="display: none;">
+                            <h3>All Pages Text Settings:</h3>
+                            <pre id="jsonContent"></pre>
+                            <p class="info-message">
+                                ℹ️ Settings copied! Send to the AI agent to update your book with <code>book add-text</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Section -->
+                <div class="panel-section">
+                    <h2>Compare with Published</h2>
+                    <div id="comparisonSection">
+                        <p class="info-message">
+                            Compare your HTML preview (with new settings) against the current published page (rendered with Pillow).
+                        </p>
+                        <button id="compareBtn" class="btn-secondary" disabled>🔍 Compare</button>
+                        
+                        <div id="comparisonContainer" class="comparison-container" style="display: none;">
+                            <div class="comparison-view">
+                                <h3>Your Preview (HTML)</h3>
+                                <canvas id="htmlCanvas"></canvas>
+                            </div>
+                            <div class="comparison-view">
+                                <h3>Published Page (Pillow)</h3>
+                                <img id="publishedOutput" alt="Published page">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/page-loader.js"></script>
+    <script src="js/image-loader.js"></script>
+    <script src="js/text-editor.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/compare.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

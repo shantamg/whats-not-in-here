@@ -1,0 +1,10 @@
+{
+  "content": "Every night before bed, Luna looked out her window at the twinkling stars above.",
+  "position": "custom",
+  "font": "Arial.ttf",
+  "fontSize": 48,
+  "color": "#000000",
+  "leftPercent": 10,
+  "topPercent": 70,
+  "widthPercent": 80
+}

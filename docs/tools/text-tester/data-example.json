@@ -1,0 +1,34 @@
+{
+  "pages": [
+    {
+      "number": 1,
+      "path": "../../images/pages/page-001.png",
+      "name": "Cover",
+      "title": "Front Cover"
+    },
+    {
+      "number": 2,
+      "path": "../../images/pages/page-002.png",
+      "name": "Page 2",
+      "title": "Title Page"
+    },
+    {
+      "number": 3,
+      "path": "../../images/pages/page-003.png",
+      "name": "Page 3",
+      "title": "Luna looks at stars"
+    },
+    {
+      "number": 4,
+      "path": "../../images/pages/page-004.png",
+      "name": "Page 4",
+      "title": "Moonbeam arrives"
+    },
+    {
+      "number": 5,
+      "path": "../../images/pages/page-005.png",
+      "name": "Page 5",
+      "title": "Luna meets Moonbeam"
+    }
+  ]
+}

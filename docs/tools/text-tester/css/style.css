@@ -1,0 +1,637 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left h1 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.header-left p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-link {
+    background: #95a5a6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-link:hover {
+    background: #7f8c8d;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+}
+
+/* Panel Styles */
+.canvas-panel,
+.properties-panel {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.panel-header {
+    background: #34495e;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.canvas-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* File Input */
+.file-input-label {
+    background: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.file-input-label:hover {
+    background: #2980b9;
+}
+
+.file-input-label input[type="file"] {
+    display: none;
+}
+
+/* Buttons */
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+button:hover:not(:disabled) {
+    background: #2980b9;
+}
+
+button:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+button.btn-primary {
+    background: #27ae60;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button.btn-primary:hover {
+    background: #229954;
+}
+
+button.btn-secondary {
+    background: #e67e22;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button.btn-secondary:hover {
+    background: #d35400;
+}
+
+button.btn-small {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* Loading Message */
+.loading-message {
+    padding: 60px 20px;
+    text-align: center;
+    background: #ecf0f1;
+    color: #7f8c8d;
+    font-size: 18px;
+}
+
+/* Pages Gallery */
+.pages-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 2rem;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    background: #ecf0f1;
+}
+
+/* Spread Container (holds 2 pages side-by-side or 1 spread) */
+.spread-container {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+    max-width: 100%; /* Don't exceed container width */
+}
+
+.spread-container:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+/* Spread Header */
+.spread-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.spread-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Spread Layout - side by side pages */
+.spread-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Flexible columns */
+    gap: 1rem;
+    align-items: start;
+    justify-content: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.spread-layout.single-spread {
+    grid-template-columns: 1fr; /* Single column for spreads */
+    max-width: 600px; /* Max width for single page view */
+}
+
+/* Individual Page in Spread */
+.page-preview {
+    position: relative;
+    max-width: 600px; /* Max display width for each page */
+    margin: 0 auto;
+    /* Create space for the scaled-down 1200px canvas */
+    min-height: 600px;
+    /* Ensure content stays within bounds */
+    overflow: hidden;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.page-number {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.add-text-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.add-text-btn:hover {
+    background: #2980b9;
+}
+
+/* Page Canvas (each page's image + overlays container) */
+.page-canvas {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: visible;
+    width: 1200px; /* Fixed DOM width to match Playwright viewport */
+    height: 1200px; /* Fixed DOM height to match Playwright viewport */
+    /* Scale down to 50% (600px visual) */
+    transform: scale(0.5);
+    transform-origin: top left;
+    /* Compensate for scale: the 1200px element at 50% scale takes 600px visual space,
+       but still occupies 1200px in layout. Negative margins shrink layout footprint to 600x600 */
+    margin-right: -600px;
+    margin-bottom: -600px;
+}
+
+.page-canvas img {
+    display: block;
+    width: 1200px; /* Fixed width to match Playwright viewport (actual DOM size) */
+    height: auto;
+}
+
+/* Image Wrapper (for positioning overlays) */
+.image-wrapper {
+    position: relative;
+    display: block;
+    width: 1200px; /* Fixed width to match Playwright viewport (actual DOM size) */
+}
+
+/* Text Overlay */
+.text-overlay {
+    position: absolute;
+    border: 2px solid transparent;
+    background: transparent;
+    cursor: move;
+    min-width: 100px;
+    min-height: 50px;
+    padding: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.text-overlay:hover {
+    border-color: rgba(52, 152, 219, 0.5);
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.text-overlay.selected {
+    border-color: #e74c3c !important;
+    background: rgba(231, 76, 60, 0.1) !important;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+}
+
+/* Keep "active" as alias for "selected" for backwards compatibility */
+.text-overlay.active {
+    border-color: #e74c3c !important;
+    background: rgba(231, 76, 60, 0.1) !important;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+}
+
+.text-overlay-content {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Resize Handles */
+.resize-handle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #3498db;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.text-overlay.selected .resize-handle,
+.text-overlay.active .resize-handle {
+    opacity: 1;
+    background: #e74c3c;
+}
+
+.resize-nw { top: -6px; left: -6px; cursor: nw-resize; }
+.resize-ne { top: -6px; right: -6px; cursor: ne-resize; }
+.resize-sw { bottom: -6px; left: -6px; cursor: sw-resize; }
+.resize-se { bottom: -6px; right: -6px; cursor: se-resize; }
+
+/* Properties Panel */
+.properties-panel {
+    overflow-y: auto;
+    max-height: calc(100vh - 140px);
+}
+
+/* Page Context */
+.page-context {
+    background: #e8f4f8;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.page-context strong {
+    color: #34495e;
+}
+
+.panel-section {
+    padding: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.panel-section:last-child {
+    border-bottom: none;
+}
+
+.panel-section h2 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.no-selection {
+    color: #95a5a6;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #34495e;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input[type="color"] {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* JSON Output */
+.json-output {
+    margin-top: 15px;
+}
+
+.json-output h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.json-output pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Comparison */
+.comparison-container {
+    margin-top: 15px;
+}
+
+.comparison-view {
+    margin-bottom: 20px;
+}
+
+.comparison-view h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.comparison-view canvas,
+.comparison-view img {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.status-message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.status-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status-message.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Page Grid */
+.page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.page-item {
+    cursor: pointer;
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: white;
+}
+
+.page-item:hover {
+    border-color: #3498db;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
+}
+
+.page-thumbnail {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-info {
+    padding: 8px;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page-number {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.page-name {
+    font-size: 11px;
+    color: #7f8c8d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Info Messages */
+.info-message {
+    background: #d1ecf1;
+    color: #0c5460;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #bee5eb;
+}
+
+.info-message code {
+    background: rgba(0,0,0,0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.warning-message {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #ffeaa7;
+}
+
+/* Responsive */
+@media (max-width: 1600px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .properties-panel {
+        max-height: none;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .page-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
