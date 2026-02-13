@@ -412,33 +412,31 @@ const PageLoader = (function() {
             const page = storyData.pages.find(p => p.pageNumber == pageNumber);
             
             if (page && page.text) {
-                // Handle both single text object and array of text objects
-                const textConfigs = Array.isArray(page.text) ? page.text : [page.text];
+                // Convert story.json text config to overlay settings
+                const textConfig = page.text;
                 
-                textConfigs.forEach(textConfig => {
-                    // Handle both simple text objects and detailed overlay configs
-                    let settings;
-                    if (textConfig.leftPercent !== undefined) {
-                        // Already has detailed overlay settings
-                        settings = textConfig;
-                    } else {
-                        // Convert simple text config to overlay settings
-                        settings = {
-                            content: textConfig.content || '',
-                            fontFamily: textConfig.fontFamily || textConfig.font || 'Quicksand',
-                            fontSize: textConfig.fontSize || 48,
-                            color: textConfig.color || '#000000',
-                            align: textConfig.align || 'left',
-                            leftPercent: textConfig.leftPercent || 10,
-                            topPercent: textConfig.topPercent || 70,
-                            widthPercent: textConfig.widthPercent || 80,
-                            heightPercent: textConfig.heightPercent || 20
-                        };
-                    }
-                    
-                    createOverlayFromSettings(settings, pageNumber, imageWrapper, imageElement);
-                });
-                console.log('Loaded text overlay(s) for page', pageNumber, 'from story.json');
+                // Handle both simple text objects and detailed overlay configs
+                let settings;
+                if (textConfig.leftPercent !== undefined) {
+                    // Already has detailed overlay settings
+                    settings = textConfig;
+                } else {
+                    // Convert simple text config to overlay settings
+                    settings = {
+                        content: textConfig.content || '',
+                        fontFamily: textConfig.fontFamily || textConfig.font || 'Quicksand',
+                        fontSize: textConfig.fontSize || 48,
+                        color: textConfig.color || '#000000',
+                        align: textConfig.align || 'left',
+                        leftPercent: textConfig.leftPercent || 10,
+                        topPercent: textConfig.topPercent || 70,
+                        widthPercent: textConfig.widthPercent || 80,
+                        heightPercent: textConfig.heightPercent || 20
+                    };
+                }
+                
+                createOverlayFromSettings(settings, pageNumber, imageWrapper, imageElement);
+                console.log('Loaded text overlay for page', pageNumber, 'from story.json');
             }
         } catch (e) {
             console.warn('Could not load text data for page', pageNumber, ':', e);
