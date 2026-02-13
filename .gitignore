@@ -1,2 +1,38 @@
 .DS_Store
 Thumbs.db
+
+# Working directories - keep local only
+pages/
+characters/
+fonts/
+logs/
+output/
+icc-profiles/
+scripts/
+cover/
+
+# Working files
+*.bak
+*.broken
+*.tmp
+project.json
+verify-all.sh
+
+# All generated images
+*.png
+*.jpg
+*.jpeg
+
+# Markdown reports
+*COMPLETE*.md
+*COMPLETION*.md
+*IMPLEMENTATION*.md
+*FIXES*.md
+*REPORT*.md
+*SUMMARY*.md
+*FIX*.md
+*TESTING*.md
+*UX*.md
+UX_*.md
+*.txt
+!docs/**/*.txt
