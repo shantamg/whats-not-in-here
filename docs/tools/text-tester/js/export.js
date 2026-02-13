@@ -49,7 +49,8 @@ const ExportManager = (function() {
             pageGroups[pageNum].push(overlay);
         });
 
-        // Convert to array format: [{pageNumber: 1, text: [...]}, ...]
+        // Convert to array format, merging with existing story.json page objects
+        // This preserves all existing fields (type, folder, scene, etc.)
         const pagesData = [];
         
         Object.keys(pageGroups).sort((a, b) => {
@@ -62,10 +63,20 @@ const ExportManager = (function() {
             // If only one overlay, export as object; if multiple, export as array
             const textData = pillowFormats.length === 1 ? pillowFormats[0] : pillowFormats;
             
-            pagesData.push({
-                pageNumber: parseInt(pageNum),
-                text: textData
-            });
+            // Get the full page object from story.json if available
+            const existingPage = PageLoader.getStoryJsonPage(parseInt(pageNum));
+            
+            if (existingPage) {
+                // Merge: keep all existing fields, only update text
+                const mergedPage = { ...existingPage, text: textData };
+                pagesData.push(mergedPage);
+            } else {
+                // No existing page data, create minimal object
+                pagesData.push({
+                    pageNumber: parseInt(pageNum),
+                    text: textData
+                });
+            }
         });
 
         // Generate JSON
@@ -82,7 +93,9 @@ const ExportManager = (function() {
             const pageCount = pagesData.length;
             const overlayCount = allOverlays.length;
             
-            exportAllBtn.textContent = `✓ Copied ${pageCount} page(s), ${overlayCount} text(s)!`;
+            const hasStoryJson = PageLoader.getStoryJsonPages().length > 0;
+            const mergeMsg = hasStoryJson ? ' (merged with story.json)' : '';
+            exportAllBtn.textContent = `✓ Copied ${pageCount} page(s), ${overlayCount} text(s)!${mergeMsg}`;
             exportAllBtn.style.background = '#27ae60';
             
             setTimeout(() => {

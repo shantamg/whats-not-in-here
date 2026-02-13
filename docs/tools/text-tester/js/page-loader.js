@@ -5,6 +5,7 @@
 const PageLoader = (function() {
     let pages = [];
     let loadedPages = [];
+    let storyJsonPages = []; // Store full page objects from story.json for export
 
     /**
      * Initialize the page loader
@@ -45,6 +46,8 @@ const PageLoader = (function() {
 
             // Enrich pages with story.json metadata if available
             if (storyData && storyData.pages) {
+                // Store full page objects for export merging
+                storyJsonPages = storyData.pages;
                 // First, enrich existing pages
                 pages.forEach(page => {
                     const storyPage = storyData.pages.find(p => p.pageNumber == page.number);
@@ -475,11 +478,27 @@ const PageLoader = (function() {
         return loadedPages.find(p => p.number == pageNumber);
     }
 
+    /**
+     * Get full page objects from story.json for export merging
+     */
+    function getStoryJsonPages() {
+        return storyJsonPages;
+    }
+
+    /**
+     * Get a specific page object from story.json by page number
+     */
+    function getStoryJsonPage(pageNumber) {
+        return storyJsonPages.find(p => p.pageNumber == pageNumber);
+    }
+
     // Public API
     return {
         init: init,
         getAllPages: getAllPages,
         getPageByNumber: getPageByNumber,
-        addTextToPage: addTextToPage
+        addTextToPage: addTextToPage,
+        getStoryJsonPages: getStoryJsonPages,
+        getStoryJsonPage: getStoryJsonPage
     };
 })();
